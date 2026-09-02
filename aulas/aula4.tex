@@ -36,11 +36,11 @@ momento. Basta notar que ele é equivalente a uma random walk,
 começando do $1$ em que cada passo adiciona $Bin(p,d) - 1$ independentemente.
 
 Segue que se $pd < 1$, o processo morre quase certamente e se $pd >
-	1$ o processo sobrevive com probabilidade positiva. Uma forma de ver isso
+1$ o processo sobrevive com probabilidade positiva. Uma forma de ver isso
 é com as seguintes contas:
 
 Definindo $S_n = 1 + \sum_{i \leq n} Bin(p,d) - 1$, vemos que se $pd
-	- 1 < 0$ e usando Chernoff, segue que $\Pr(Sn \geq 0) < e^{-cn}$ e temos
+- 1 < 0$ e usando Chernoff, segue que $\Pr(Sn \geq 0) < e^{-cn}$ e temos
 morte q.c. Se $pd - 1 > 0$, então, por Chernoff de novo, existe $n_0$
 tal que $\sum_{n \geq n_0} \Pr(S_n \leq 0) < Ke^{-cn_0} <1$.
 Com probabilidade positiva, só crescemos até $n_0$ e nunca mais
@@ -57,12 +57,13 @@ Note que, durante a exploração, $|C_o| = S_n$ é uma martingale. Seja
 $R = \inf \{t \in \N: S_t = 0 \lor S_t = \sqrt{n}\}$. Como a
 sequência $S_{R_t} + 1$ é uniformemente
 limitada, segue pelo teorema da parada que $1 = \Ex[S_m] = \Ex[1 +
-		S_R] = \sqrt{n}\Pr(S_R = \sqrt{n})$, logo $\Pr(S_R = \sqrt{n}) = 1/\sqrt{n}$.
+S_R] = \sqrt{n}\Pr(S_R = \sqrt{n})$, logo $\Pr(S_R = \sqrt{n}) = 1/\sqrt{n}$.
 Agora temos que
 \begin{align}
 	\Pr(|C_o| \geq n) & \geq \Pr(S_R = \sqrt{n} \land 0 \not \in
-	\{S_{R+1}, \dots S_{n}\})                                                                 \\
-	                  & = \Pr(S_R \sqrt{n}) \Pr(\max_{i < n} S_i < \sqrt{n}) \geq \frac{c}{n}
+	\{S_{R+1}, \dots S_{n}\})
+	\\
+	& = \Pr(S_R \sqrt{n}) \Pr(\max_{i < n} S_i < \sqrt{n}) \geq \frac{c}{n}
 \end{align}
 onde a usamos o teorema de Donsker que nos diz
 \[
@@ -71,21 +72,24 @@ onde a usamos o teorema de Donsker que nos diz
 O upperbound é menos intuitivo. Separe o intervalo $[n]$ em $\log n$
 subintervalos de tamanho $n/\log n$.
 Seja defina $R' = \inf\{t \in \N : S_t = 0 \lor S_t = \sqrt{n/\log
-		n}\}$, note que
+n}\}$, note que
 \[
 	\{|C_o| \geq n\} \subset \{S_{R'} = \sqrt{n/\log n}\} \cup \{\forall
 	i \in [n], S_i \subset [\sqrt{n / \log n}]\}
 \]
 Como vimos antes a probabilidade do primeiro evento é $\sqrt{\log n /
-		n}$. O segundo pode ser calculado
+n}$. O segundo pode ser calculado
 separando o intervalo $[n]$ em $\log n$ intervalos de tamanho $n/\log
-	n$. Como espera-se que em cada um desses
+n$. Como espera-se que em cada um desses
 o passeio pule $\sqrt{n/\log n}$ (em particular com probabilidade
 constante $c < 1$ isso acontece), então
 \[
 	\Pr(|C_o| \geq n) \leq \sqrt{\frac{\log n}{n}} + [\Pr(\forall 1 \leq
-	i \leq n/\log n : S_i < \sqrt{n/\log n})]^{\log n} \leq \sqrt{\frac{\log n}{n}} + c^{\log n}.
+	i \leq n/\log n : S_i < \sqrt{n/\log n})]^{\log n} \leq
+	\sqrt{\frac{\log n}{n}} + c^{\log n}.
 \]
-O bound segue daí. Para obter o resultado formalmente, podemos multiplicamos os tamanhos dos intervalinhos
-por alguma constante $c$, o mesmo para a altura do stopping time $R'$. Depois de otimizar conseguimos
+O bound segue daí. Para obter o resultado formalmente, podemos
+multiplicamos os tamanhos dos intervalinhos
+por alguma constante $c$, o mesmo para a altura do stopping time $R'$.
+Depois de otimizar conseguimos
 o $C\sqrt{\frac{\log n}{n}}$.
