@@ -1,0 +1,90 @@
+\section{Aula 4}
+
+Nessa aula estávamos interessado em modelos em que podemos
+estimar todas as probabilidades críticas explícitamente.
+Exemplos destes modelos são as árvores $d$-árias infinitas.
+
+\begin{definition}
+	A árvore $d$-ária infinita $\cT_d$ é uma árvore com raiz $o$ em que
+	todos os vértices tem $d$ filhos.
+\end{definition}
+
+O primeiro teorema da aula nos diz que sabemos $p_c$ e $\Theta(p_c)$
+neste modelo.
+Para essa seção em particular, seja $p_c^d$ a probabilidade crítica
+em bond percolation de $\cT_d$.
+\begin{theorem}
+	Temos que
+	\begin{equation}
+		p_c^d = \frac{1}{d}
+	\end{equation}
+	e vale continuidade $\Theta_{\cT_d}^o(p_c^d) = 0$.
+\end{theorem}
+
+A prova é bem legal e usa uma exploração na árvore. Podemos fazer um
+BFS ou DFS, tanto faz. Começamos
+com $E = \varnothing$ e $L = \{o\}$, a cada passo do algoritmo,
+escolhemos um vértice $v$ em $L$ e verificamos
+se $v$ está conectado aos seus filhos (cada um com probabilidade $p$),
+se um filho $w$ está conectado, adicionamos ele a $L$.
+Depois de verificar todos os filhos de $v$, removemos $v$ de $L$ e o
+adicionamos para $E$.
+
+É fácil ver que esse processo explora a componente conexa da raiz.
+Temos que verificar se o processo morre, i.e $L$ fica vazio em algum
+momento. Basta notar que ele é equivalente a uma random walk,
+começando do $1$ em que cada passo adiciona $Bin(p,d) - 1$ independentemente.
+
+Segue que se $pd < 1$, o processo morre quase certamente e se $pd >
+1$ o processo sobrevive com probabilidade positiva. Uma forma de ver isso
+é com as seguintes contas:
+
+Definindo $S_n = 1 + \sum_{i \leq n} Bin(p,d) - 1$, vemos que se $pd
+- 1 < 0$ e usando Chernoff, segue que $\Pr(Sn \geq 0) < e^{-cn}$ e temos
+morte q.c. Se $pd - 1 > 0$, então, por Chernoff de novo, existe $n_0$
+tal que $\sum_{n \geq n_0} \Pr(S_n \leq 0) < Ke^{-cn_0} <1$.
+Com probabilidade positiva, só crescemos até $n_0$ e nunca mais
+morremos novamente.
+
+O caso crítico é bem interessante e o Augusto só fez para $d = 2$.
+Vamos ver que o processo morre, mas uma conta simples implica já que o número
+de elementos na componente conexa tem esperança infinita. Seja $C_o$
+o componente no final da exploração. Provaremos que
+\[
+	\frac{c}{\sqrt{n}} \leq \Pr(|C_o| \geq n) \leq C\sqrt{\frac{\log n}{n}}.
+\]
+Note que, durante a exploração, $|C_o| = S_n$ é uma martingale. Seja
+$R = \inf \{t \in \N: S_t = 0 \lor S_t = \sqrt{n}\}$. Como a
+sequência $S_{R_t} + 1$ é uniformemente
+limitada, segue pelo teorema da parada que $1 = \Ex[S_m] = \Ex[1 +
+S_R] = \sqrt{n}\Pr(S_R = \sqrt{n})$, logo $\Pr(S_R = \sqrt{n}) = 1/\sqrt{n}$.
+Agora temos que
+\begin{align}
+	\Pr(|C_o| \geq n) & \geq \Pr(S_R = \sqrt{n} \land 0 \not \in
+	\{S_{R+1}, \dots S_{n}\})    \\
+	& = \Pr(S_R \sqrt{n}) \Pr(\max_{i < n} S_i < \sqrt{n}) \geq \frac{c}{n}
+\end{align}
+onde a usamos o teorema de Donsker que nos diz
+\[
+	\Pr(\max_{i < n} S_i < \sqrt{n}) \to \Pr(N(0,\sigma) < \beta\sigma) = C.
+\]
+O upperbound é menos intuitivo. Separe o intervalo $[n]$ em $\log n$
+subintervalos de tamanho $n/\log n$.
+Seja defina $R' = \inf\{t \in \N : S_t = 0 \lor S_t = \sqrt{n/\log
+n}\}$, note que
+\[
+	\{|C_o| \geq n\} \subset \{S_{R'} = \sqrt{n/\log n}\} \cup \{\forall
+	i \in [n], S_i \subset [\sqrt{n / \log n}]\}
+\]
+Como vimos antes a probabilidade do primeiro evento é $\sqrt{\log n /
+n}$. O segundo pode ser calculado
+separando o intervalo $[n]$ em $\log n$ intervalos de tamanho $n/\log
+n$. Como espera-se que em cada um desses
+o passeio pule $\sqrt{n/\log n}$ (em particular com probabilidade
+constante isso acontece), então
+o resultado segue.
+
+\[
+	\Pr(|C_o| \geq n) \leq \sqrt{\frac{\log n}{n}} + [\Pr(\forall 1 \leq
+	i \leq n/\log n : S_i < \sqrt{n/\log n})]^{\log n}.
+\]

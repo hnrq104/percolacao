@@ -1,67 +1,95 @@
 \section{Aula 3}
 
 \begin{question}
-    Como se comporta $\Theta(p)$ para $p > p_c$?
+	Como se comporta $\Theta(p)$ para $p > p_c$?
 \end{question}
 
 \begin{question}
-    Quantas componentes infinitas existem em $\Z^d$?
+	Quantas componentes infinitas existem em $\Z^d$?
 \end{question}
 
 \begin{theorem}
-Para todo $p \in [0,1]$ existe no máximo uma componente infinita em $(\Z^d)_p$ q.c.
+	Para todo $p \in [0,1]$ existe no máximo uma componente infinita em
+	$(\Z^d)_p$ q.c.
 \end{theorem}
 
 \begin{proof}
-    A primeira coisa a notar é que a medida é invariante por translação. Definimos
-    $N = \#\{\text{componentes conexas}\}$, como $N$ também é invariante por translação. Por alguma 
-    lei 0-1 de ergocidade, segue que $N$ é constante q.c.
+	A primeira coisa a notar é que a medida é invariante por translação. Definimos
+	$N = \#\{\text{componentes conexas}\}$, como $N$ também é invariante
+	por translação. Por alguma
+	lei 0-1 de ergocidade, segue que $N$ é constante q.c.
 
-    Primeiro a gente prova que $N \in \{0,1,\infty\}$. Seja $N_m$ o número de componentes
-    infinitas que tocam o bordo de $B_m$. Note que $N_m$ é independente da configuração da bola $B_m$ em si.
-    Então a gente pode brincar de abrir e fechar as arestas dessa bola.
-    Como $N_m \to N$ e estamos supondo $N = k \not \in \{0,1,\infty\}$, existe $m_0$ tal que 
-    $\Pr(N_{m_0} = k) \geq 1 - \epsilon$. Agora, fixado tal $m_0$ vamos definir $\cE_0$ o evento 
-    que todas as arestas de $B_{m_0}$ estão fechados e $\cE_1$ o evento que todas estão abertas.
-    Agora segue que 
-    $$\Pr(N_m \geq k \cap \cE_1) > 0.$$
-    mas se isso acontece, teríamos $\Pr\{N = 1\}>0$ (pois $N \leq k$ q.c).
-    Para mim isso já é a prova completa, por algum motivo o Augusto definiu $\cE_0$ e eu não sei exatamente o 
-    porquê.
+	Primeiro a gente prova que $N \in \{0,1,\infty\}$. Seja $N_m$ o
+	número de componentes
+	infinitas que tocam o bordo de $B_m$. Note que $N_m$ é independente
+	da configuração da bola $B_m$ em si.
+	Então a gente pode brincar de abrir e fechar as arestas dessa bola.
+	Como $N_m \to N$ e estamos supondo $N = k \not \in \{0,1,\infty\}$,
+	existe $m_0$ tal que
+	$\Pr(N_{m_0} = k) \geq 1 - \epsilon$. Agora, fixado tal $m_0$ vamos
+	definir $\cE_0$ o evento
+	que todas as arestas de $B_{m_0}$ estão fechados e $\cE_1$ o evento
+	que todas estão abertas.
+	Agora segue que
+	$$\Pr(N_m \geq k \cap \cE_1) > 0.$$
+	mas se isso acontece, teríamos $\Pr\{N = 1\}>0$ (pois $N \leq k$ q.c).
+	Para mim isso já é a prova completa, por algum motivo o Augusto
+	definiu $\cE_0$ e eu não sei exatamente o
+	porquê.
 
-    A segunda parte é bem bonitinha. Para mostrar que $\Pr(N = \infty) = 0$ fazemos uso da bola de raio $m$ mas 
-    em $L^1$. O augusto mostra na verdade que $\Pr(N \geq 3) = 0$ e de maneira bem esperta. Assim como antes, 
-    se essa probabilidade é positiva, é possivel encontrar uma $L^1$-bola de raio $m$ de que 
-    toca em pelo menos três componentes infinitas distintas (pelas bordas). Definimos então um ponto de trifurcação da bola 
-    um vértice que se removido, faz aparecer três componentes infinitas distintas. Pela bola que usamos e supondo 
-    $\Pr(N \geq 3) > 0$, alterando somente finitas arestas dentro da bola, vemos que com probabilidade positiva, um ponto é de trifurcação.
+	A segunda parte é bem bonitinha. Para mostrar que $\Pr(N = \infty) =
+	0$ fazemos uso da bola de raio $m$ mas
+	em $L^1$. O augusto mostra na verdade que $\Pr(N \geq 3) = 0$ e de
+	maneira bem esperta. Assim como antes,
+	se essa probabilidade é positiva, é possivel encontrar uma
+	$L^1$-bola de raio $m$ de que
+	toca em pelo menos três componentes infinitas distintas (pelas
+	bordas). Definimos então um ponto de trifurcação da bola
+	um vértice que se removido, faz aparecer três componentes infinitas
+	distintas. Pela bola que usamos e supondo
+	$\Pr(N \geq 3) > 0$, alterando somente finitas arestas dentro da
+	bola, vemos que com probabilidade positiva, um ponto é de trifurcação.
 
-    Um lema esperto (e brincando com árvores) mostra que podem existir no máximo $|\partial B_m| - 2$ tais pontos. Mas, 
-    por linearidade da esperança, em média existem $\alpha|B_m|$ deles. Fazendo $m \to infty$ achamos a bela contradição.
+	Um lema esperto (e brincando com árvores) mostra que podem existir
+	no máximo $|\partial B_m| - 2$ tais pontos. Mas,
+	por linearidade da esperança, em média existem $\alpha|B_m|$ deles.
+	Fazendo $m \to infty$ achamos a bela contradição.
 \end{proof}
 
 Depois voltamos a nos interessar pela continuidade de $\Theta(p)$.
 \begin{question}
-    Será $\Theta(p)$ contínua em algum intervalos? 
+	Será $\Theta(p)$ contínua em algum intervalos?
 \end{question}
 \begin{theorem}
-    $\Theta(p)$ é crescente, identicamente 0 abaixo de $p_c$, 
-    pelo menos contínua a direita em $p_c$ e contínua para $p>p_c$.
+	$\Theta(p)$ é crescente, identicamente 0 abaixo de $p_c$,
+	pelo menos contínua a direita em $p_c$ e contínua para $p>p_c$.
 \end{theorem}
 \begin{proof}
-    As primeiras duas são claras, a terceira segue pois $\Theta(p) = \lim_{n \to \infty} \Theta_n(p)$ (lembre que essa é a probabilidade 
-    da origem se conectar ao bordo da bola de raio $n$). Como $\Theta_n{p}$ é contínua e crescente e a sequência 
-    é decrescente, algum antigo resultade de análise conclui que $\Theta(p)$ é cadlag (nem lembro como prova isso).
-    
-    A parte mais interessante é a última. Para isso a gente considera o coupling das arestas com variáveis uniformes $[0,1]$. 
-    E percebemos que $(\Z^d)_p$ é pegar somente as arestas $e$ tais que $U_e \leq p$. Isso define uma família de percolações na verdade
-    e vemos que estamos interessados em $\lim_{p'\to p} \Theta(p) - \Theta(p')$ onde imaginamos $\Theta(p')$ sendo as probabilidades na família $(\Z^d)_{p'}$.
-    Agora, se esse limite fosse diferente de $0$, isso se traduziria nesse coupling que 
-    \[
-        \Pr(0 \leftrightarrow_p \infty \land 0 \not \leftrightarrow_{p'} \infty \forall p'<p) > 0
-    \]
-    Mas em $p$ existe um cluster infinito $C$ conectando o $0$. Em $p_c < p' < p$ esse cluster infinito já existe também mas não toca o $0$ (denotamos de $C^{p'}$).
-    Como o número de arestas que conecta $0$ a $C^{p'}$ em $C$ são finitas e cada uma ocorre aparece antes de $p$ q.c, existe algum $\alpha < p$ tal que $\C^{\alpha} = C$
-    e isso é um absurdo, completando a prova.
-\end{proof}
+	As primeiras duas são claras, a terceira segue pois $\Theta(p) =
+	\lim_{n \to \infty} \Theta_n(p)$ (lembre que essa é a probabilidade
+	da origem se conectar ao bordo da bola de raio $n$). Como
+	$\Theta_n{p}$ é contínua e crescente e a sequência
+	é decrescente, algum antigo resultade de análise conclui que
+	$\Theta(p)$ é cadlag (nem lembro como prova isso).
 
+	A parte mais interessante é a última. Para isso a gente considera o
+	coupling das arestas com variáveis uniformes $[0,1]$.
+	E percebemos que $(\Z^d)_p$ é pegar somente as arestas $e$ tais que
+	$U_e \leq p$. Isso define uma família de percolações na verdade
+	e vemos que estamos interessados em $\lim_{p'\to p} \Theta(p) -
+	\Theta(p')$ onde imaginamos $\Theta(p')$ sendo as probabilidades na
+	família $(\Z^d)_{p'}$.
+	Agora, se esse limite fosse diferente de $0$, isso se traduziria
+	nesse coupling que
+	\[
+		\Pr(0 \leftrightarrow_p \infty \land 0 \not \leftrightarrow_{p'}
+		\infty \forall p'<p) > 0
+	\]
+	Mas em $p$ existe um cluster infinito $C$ conectando o $0$. Em $p_c
+	< p' < p$ esse cluster infinito já existe também mas não toca o $0$
+	(denotamos de $C^{p'}$).
+	Como o número de arestas que conecta $0$ a $C^{p'}$ em $C$ são
+	finitas e cada uma ocorre aparece antes de $p$ q.c, existe algum
+	$\alpha < p$ tal que $\C^{\alpha} = C$
+	e isso é um absurdo, completando a prova.
+\end{proof}
