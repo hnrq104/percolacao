@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,bbm,mathtools,calc,verbatim,
+	enumitem,tikz,url,mathrsfs,cite,fullpage,hyperref,bm, marvosym,
+dsfont, float, subcaption}
+\renewcommand{\baselinestretch}{1.1}
+\addtolength{\footskip}{\baselineskip/2}
+
+\usepackage{comment}
+\usepackage[english]{babel}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{definition}[theorem]{Definition}
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{obs}[theorem]{Observation}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{problem}{Problem}[section]
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{remark}[theorem]{Remark}
+
+% my custom problems
+\newtheorem{innercustomexercise}{Exercise}
+\newenvironment{customexercise}[1]
+{\renewcommand\theinnercustomexercise{#1}\innercustomexercise}
+{\endinnercustomexercise}
+
+\newenvironment{clmproof}[1]{
+	\begin{proof}[Proof of
+	Claim~\ref{#1}]\let\qednow\qedsymbol\renewcommand{\qedsymbol}{}}{\; \qednow
+\end{proof}}
+
+\newcounter{step}
+\newenvironment{proofsteps}{
+	\setcounter{step}{0}
+	\begin{list}{\textbf{Step \arabic{step}.}}{\usecounter{step}
+			\setlength{\leftmargin}{1.5em}
+		\setlength{\itemsep}{0.3em}}
+	}{
+	\end{list}
+}
+
+\newcommand{\stepcomment}[1]{\hfill {\small\textit{#1}}}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\R{\mathbb{R}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\cA{\mathcal{A}}
+\newcommand\cB{\mathcal{B}}
+\newcommand\cN{\mathcal{N}}
+\newcommand\cP{\mathcal{P}}
+\newcommand\cQ{\mathcal{Q}}
+\newcommand\cZ{\mathcal{Z}}
+\newcommand\rN{\tilde{N}}
+\newcommand\cT{\mathcal{T}}
+\newcommand\cE{\mathcal{E}}
+\def\Pr{\mathbb{P}}
+\def\cS{\mathcal{S}}
+\newcommand\Ex{\mathbb{E}}
+\newcommand\id{\bm{1}}
+\newcommand\lcm{\operatorname{lcm}}
+\newcommand\eps{\varepsilon}
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\prob}{
+	\begin{problem}
+\end{problem}}
+\newcommand{\exer}{
+	\begin{exercise}
+\end{exercise}}
+\newcommand{\cexer}[1]{
+	\begin{customprob}{#1}
+\end{customprob}}
+
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\to}{\rightarrow}
+\renewcommand{\Re}{\re}
+
+\def\ds{\displaystyle}
+
+\def\eps{\varepsilon}
+\def\p{\partial}
+
+\def\HH{\mathcal{H}}
+\def\E{\mathbb{E}}
+\def\C{\mathbb{C}}
+\def\cM{\mathcal{M}}
+\def\cF{\mathcal{F}}
+\def\cI{\mathcal{I}}
+\def\R{\mathbb{R}}
+\def\bS{\mathbb{S}}
+\def\bH{\mathbb{H}}
+\def\Z{\mathbb{Z}}
+\def\N{\mathbb{N}}
+\def\PP{\mathbb{P}}
+\def\1{\mathbbm{1}}
+\def\l{}
+\def\k{\kappa}
+\def\w{\omega}
+\def\s{\sigma}
+\def\t{\theta}
+\def\a{\alpha}
+\def\g{\gamma}
+\def\z{\zeta}
+\def\zbar{\bar{z}}
+\def\<{\langle}
+\def\>{\rangle}
+%\def\endproof{{\hfill $\square$} }
+\def\Xt{\widetilde{X}}
+\def\Pt{\widetilde{P}}
+
+\def\cN{\mathcal{N}}
+\def\cC{\mathcal{C}}
+\def\cD{\mathcal{D}}
+\def\cR{\mathcal{R}}
+\def\cB{\mathcal{B}}
+\def\cG{\mathcal{G}}
+\def\EE{\mathbb{E}}
+\def\FF{\mathbb{F}}
+\def\T{\mathbb{T}}
+\def\cA{\mathcal{A}}
+\def\cQ{\mathcal{Q}}
+\def\cC{\mathcal{C}}
+\def\F{\mathbb{F}}
+\def\tm{\tilde{\mu}}
+\def\ts{\tilde{\sigma}}
+\def\vp{\varphi}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	urlcolor=blue,
+}
+
+\pagestyle{plain}
+\author{
+	Henrique
+}
+\title{Notas Percolação}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\setcounter{section}{-1}
+\section{Informações importantes}
+Devo guardar teoremas legais visto no curso e sketches muito breves
+de suas provas se achar necessário.
+
+\input{aulas/aula1.tex}
+\input{aulas/aula2.tex}
+\input{aulas/aula3.tex}
+
+\end{document}

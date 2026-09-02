@@ -1,0 +1,101 @@
+\section{Aula 2}
+A aula iniciou com a prova da segunda parte
+do teorema [\ref{trm:bounds_for_pc}].
+Antes de dar continuidade, verificamos que, como $\Z^2 \subset \Z^d$ para todo
+$d \geq 2$, basta provar para $d = 2$ (daí vem o $2/3 = 1 - 1/(4-1)$). Agora
+$\Z^2$ tem uma propriedade muito especial, ele possui um
+dual.
+
+\begin{definition}
+	Definimos o grafo $(\bar{\Z}^2, \bar{E})$ como sendo $\Z^2$ transladado
+	por $(1/2, 1/2)$. Isso é, $\bar{\Z}^2 = \{x + (1/2, 1/2) : x \in \Z^2\}$ e
+	$\bar{E} = \{\{x,y\} : x,y \in \bar{\Z}^2, |x-y| = 1\}$.
+\end{definition}
+
+O interessante sobre $\bar{\Z}^2$ é que para cada aresta $e \in \Z^2$,
+existe uma única
+aresta $\bar{e} \in \bar{\Z}^2$ que "intersecta" $e$. É fácil ver
+isso se desenhamos os quadradinhos.
+É possível então fazer um coupling entre os modelos $\Z^2$ e
+$\bar{\Z}^2$ de forma que
+$X_e = 1 - X_{\bar{e}}$ - isso é $e$ é percolada em $\Z^2$ sse
+$\bar{e}$ não é percolada em $\bar{\Z}^2$. Daí segue um lema
+topológico óbvio
+cuja prova parece impossível.
+
+\begin{lemma}
+	Sejam $\Z^2$ e $\bar{\Z}^2$ os modelos descritos. Então
+	\[
+		\{\vec{0} \nleftrightarrow_{\Z^2} \infty\} = \{\text{existe ciclo
+		em } \bar{\Z}^2 \text{ ao redor da origem}\}.
+	\]
+	Posto em palavras, $0$ não se conecta ao infinito em $\Z^2$ se e só se o
+	cografo $\bar{\Z}^2$ circula a origem.
+\end{lemma}
+\begin{proof}
+	Um desenho rápido mostra que esse deve ser o caso. A inclusão da
+	direita para esquerda é fácil,
+	a outra requer o argumento topológico e o teorema de Jordan.
+\end{proof}
+
+Com esse lema, atacamos [\ref{trm:bounds_for_pc}] usando o dual.
+\begin{proof}
+	Notamos que
+	\begin{align*}
+		\Pr(\exists \text{ ciclo ao redor da origem}) &\leq \sum_{n =
+		2}^{\infty} \Pr(\exists \text{ ciclo de tamanho } n \text{ ao redor
+		da origem})\\
+		&\leq \sum_{n = 2}^{\infty} n 4 (4-1)^n (1-p)^{n} < \infty
+	\end{align*}
+	se $p > 2/3$. Essa soma no entanto pode ser maior que $1$. Para
+	concluir a prova precisamente, podemos considerar a probabilidade
+	da bola de raio $m$ não se conectar ao infinito $\Pr(B_m
+	\nleftrightarrow \infty)$.
+	Pela mesma razão de antesde antes (mas agora considerando ciclos de
+	tamanho pelo menos $4m$, temos)
+	\[
+		\Pr(0 \nleftrightarrow \infty) \leq \Pr(B_m \nleftrightarrow
+		\infty) \leq \sum_{n \geq 4m} n4(4-1)^n(1-p)^n
+	\]
+	que pode ser tomado arbitrariamente pequeno com $m$ grande.
+\end{proof}
+
+Uma discussão legal apareceu depois desse teorema. Se definimos
+$p_c^d = \sup \{p : \Theta_d(p) = 0\}$
+então alguns resultados são conhecidos.
+\begin{equation*}
+	\Theta_d(p_c^d) = 0 \text{ se } d \in \{2,11,12,\dots\}
+\end{equation*}
+O Augusto disse que provavelmente o resultado é verdade se $d \geq 7$
+e espera-se que seja possível provar
+pelos mesmos métodos que usaram para $d \geq 11$. Mas reafirmou que
+ninguém sabe de nada para $d \in \{3,4,5,6\}$.
+\begin{question}
+	Como se comporta $\Theta_d(p_c^d)$ para $d \in \{3,4,5,6\}$?
+\end{question}
+Este é o maior problema em toda a teoria de percolação e as
+consequências de um resultado seriam catastróficas.
+
+Depois disso provamos a desigualdade de Harris ou FKG - uma amiga antiga.
+\begin{theorem}
+	Sejam $X,Y : \{0,1\}^E \to \R$ variáveis aleatórias crescentes (ou
+	decrescentes) em um espaço produto. Então
+	\[
+		\Ex XY \geq \Ex X \Ex Y.
+	\]
+	Além do mais, se $X$ for crescente e $Y$ decrescente, a desigualdade
+	oposta é válida
+	\[
+		\Ex XY \leq \Ex X \Ex Y.
+	\]
+\end{theorem}
+\begin{proof}
+	A prova é simples. Fazemos indução em $|E|$. Para $|E| = 1$, uma
+	conta chatinha mostra o resultado.
+	Para $|E| = {n}$ consideramos as variáveis em $t$, $\Ex[X | t_n =
+	t]$ e $\Ex[Y | t_n = t]$.
+	Segue que ambas são crescentes e que podemos aplicar o teorema em
+	$\Ex[XY|t_n] \geq \Ex[X|t_n]\Ex[Y|t_n]$ também por indução. Portanto,
+	\[\Ex XY = \Ex\Ex[XY | t_n] \geq \Ex \Ex[X|t_n]\Ex[Y|t_n] \geq
+	\Ex[\Ex[X|t_n]]\Ex\Ex[Y|t_n] = \Ex X \Ex Y\]
+\end{proof}

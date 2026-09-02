@@ -1,0 +1,108 @@
+\section{Aula 1}
+
+O Augusto fez as definições básicas de percolação
+e apresentou resultados iniciais bem bonitos.
+
+Dado um grafo $G = (V,E)$ definimos (assim como em $G(n,p)$)
+o grafo aleatório $G_p$ que tem cada aresta adicionada
+independentemente com probabilidade $p$. Aqui $V$ e $E$ são usualmente
+infinitos. O exemplo canônico é $G = (\Z^d, \{\{x,y\} : |x - y| = 1\})$,
+e percolamos sobre o látice inteiro de dimensão $d$.
+
+O primeiro teorema foi bem simples.
+\begin{theorem}
+	Seja $G = (V,E)$ com $|V| = \infty$ e suponha que $\Delta(G) < \infty$. Então
+	$$\Pr(G_p \text{ é desconexo}) = 1.$$
+\end{theorem}
+\begin{proof}
+	Basta verificar que com probabilidade $q>0$ cada vtx é isolado.
+	Como vertices não adjacentes são isolados independentemente, segue de Borel-Cantelli que 
+    isso acontece infinitas vezes com probabilidade 1.
+\end{proof}
+
+O Augusto motivou percolação para responder a seguinte pergunta
+\begin{question}
+	Qual é a probabilidade de que $G_p$ (nesse caso $\Z^d$)
+	possua uma componente conexa infinita?
+\end{question}
+
+Com um lema esperto, podemos reduzir essa pergunta a probabilidade da origem
+estar conectada ao infinito. Para ser mais exato, definimos o evento
+\[
+	\{\vec{0} \leftrightarrow \infty\} = \{\exists \sigma = (v_0, v_1,
+	v_2, \dots) \subset G_p\}
+\]
+onde $\sigma$ aqui é um caminho infinito que não se intersecta e $v_0
+= 0$. Temos então
+\begin{lemma}
+	\[
+		\Pr(G_p \text{ tem uma comp. con. infinita}) =
+		\begin{cases}
+			1 & \text{se } \Pr_p(\vec{0} \leftrightarrow \infty) > 0\\
+			0 & \text{se } \Pr_p(\vec{0} \leftrightarrow \infty) = 0
+		\end{cases}
+	\]
+\end{lemma}
+\begin{proof}
+	Um lado é fácil, se a probabilidade de se conectar ao infinito é
+	$0$, então, pelo
+	union bound, nenhum vertice se conecta ao infinito e $G_p$ não tem
+	componente infinita.
+
+	Para o outro lado, basta notar que ter uma componente infinita é um
+	evento caudal,
+	portanto sua probabilidade é 0 ou 1. Se a probabilidade do
+	$\vec{0}$ se conectar
+	ao infinito é maior que $0$, então temos uma componente com probabilidade 1.
+\end{proof}
+
+Provamos outro lema esperto também.
+\begin{lemma}
+	\[
+		\{\vec{0} \leftrightarrow \infty\} = \bigcap_{n\geq1} \{\exists
+		\sigma_k = (\vec{0}, v_1, \dots, v_k) \subset G_p, v_k \in \partial B_n\}
+	\]
+	onde $\sigma_k$ é um caminho não intersectante com $k$
+	arestas conectando o $0$ com a borda da bola quadrada de
+	raio $n$.
+\end{lemma}
+
+\begin{proof}
+	A primeira inclusão é óbvia, segue de casas dos pombos. A outra nem tanto,
+	note que cada evento nos diz que existe um caminho, não
+	necessáriamente esse caminho
+	é o mesmo. Se ele fica saltando não adianta de nada. Mas é fácil
+	resolver. Como existem
+	infinitos caminhos que saem do $\vec{0}$, basta anotar uma aresta
+	vizinha do $\vec{0}$ pela qual passam
+	infinitos caminhos. Andamos pela a aresta e continuamos, novamente
+	existe uma aresta (sem ser a anterior) pela
+	qual passam infinitos caminhos. Percorrendo assim, terminamos a prova.
+\end{proof}
+
+Por fim o Augusto enunciou um teoremão bem bonito. Para reduzir a notação,
+seja $\Theta_d(p) = \Pr_p(\vec{0} \leftrightarrow \infty)$ em $\Z^d$.
+Temos então
+\begin{theorem}
+	\label{trm:bounds_for_pc}
+	Se $p < \frac{1}{2d - 1}$, então
+	\[\Theta(p) = 0.\]
+	Por outro lado, se $p > 2/3$, então
+	\[\Theta(p) > 0.\]
+\end{theorem}
+Ele só provou a parte fácil, que é a primeira afirmação.
+\begin{proof}
+	Basta usar o lema anterior e cotar a probabilidade de conectar o $0$
+	com a borda de $B_n$.
+	Existem menos que $(2d)(2d - 1)^{n-1}$ caminhos não intersectantes
+	saindo do $0$ de comprimento $n$,
+	cada um deles acontece com probabilidade $p^n$. Portanto,
+	\[
+		\Pr_p(\exists
+			\sigma_k = (\vec{0}, v_1, \dots, v_k) \subset G_p, v_k \in \partial
+		B_n) \leq (2d)(2d-1)^{n-1}p^n \to 0
+	\]
+	se $p < \frac{1}{2d - 1}$.
+\end{proof}
+
+Próxima aula veremos a segunda parte do teorema (parece bem interessante).
