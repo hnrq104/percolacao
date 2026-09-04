@@ -1,3 +1,102 @@
 \section{Aula 5}
 
+Hoje estou um pouco \Frowny, portanto devo ser um pouco mais suscinto.
+Na aula, vimos duas  ferramentas bem legais que aparecem em
+percolação. As duas abordam probabilidades de eventos crescentes
+no hipercubo $\{0,1\}^{[n]}$. Em todos os teoremas seguintes, como
+geralmente percolamos arestas,
+nosso hipercubo será da forma
+$\{0,1\}^{E}$ onde $E$ é o conjunto de arestas de um grafo $G = (V,E)$ finito.
+Começamos pela identidade de Russo, para qual precisamos de uma definição.
+
+\begin{definition}
+	Dado $A \subset \{0,1\}^E$ um evento crescente e $\omega \in \{0,
+	1\}^E$, dizemos
+	que uma aresta $e \in E$ é pivotal em $\omega$ em relação a $A$ se vale que
+	\[\omega_e^{+} \in A \quad \& \quad \omega_e^- \not \in A\]
+	onde $\omega_e^+$ é alterar $\omega$ somente na coordenada $e$ para
+	$1$ e $\omega_e^-$
+	é definido análogamente.
+\end{definition}
+
+Isso é, a aresta $e$ é pivotal em $\omega$ para $A$ se trocar o
+estado de $e$ muda se pertencemos a $A$.
+Com isso, conseguimos definir um evento
+\[
+	\partial_e A = \{e \text{ é pivotal em } A\} = \{\omega: e \text{ é
+	pivotal em $\omega$ em relação a } A\}.
+\]
+Dado $\bm{p} \in [0,1]^{E}$, consideramos o modelo $G_{\bm{p}}$ que é percolar
+cada aresta $e$ com probabilidade $\bm{p}_e$. Temos a seguinte identidade
+
+\begin{theorem}
+	Dado $A$ evento crescente, $e \in E$ e pensando em $\Pr_{\bm{p}}(A)$
+	como uma função nas entradas $\bm{p}_e$ de $\bm{p}$, temos
+	\begin{equation*}
+		\frac{d\Pr_{\bm{p}}(A)}{d\bm{p}_e} = \Pr(\partial_e A).
+	\end{equation*}
+	Em particular, fixando $\bm{p} = (p,p,\dots, p)$, segue que
+	\[
+		\frac{d\Pr_p(A)}{dp} = \sum_{e \in E} \Pr(\partial_e A) = \Ex
+		\#\{\text{arestas pivotais em A}\}.
+	\]
+\end{theorem}
+
+\begin{proof}
+	O Augusto deu uma prova bem bonitinha probabilistica usando o coupling
+	com uniformes. Tem uma mais bruta que é uma conta simples no Bela.
+\end{proof}
+
+Depois vimos bem legal da desigualdade de Berg-Kestern para eventos crescentes.
+É quase que uma recíproca para desigualdade de Harris. Não vou
+escrever a prova aqui,
+somente as definições necessárias. Uma prova por indução pode ser
+achada no Bela também.
+
+\begin{definition}
+	Dado um evento $A$ crescente em $\{0,1\}^E$ e $\omega \in A$,
+	dizemos que $I \subset E$ é
+	uma testemunha para o evento $A$ de $\omega$ se para todo $\omega'$
+	tal que $\omega'|_I = \omega|_I$ temos que $\omega' \in A$.
+	Considerando todos tais $\omega$, definimos o evento em que $I$ é uma
+	testemunha para $A$.
+\end{definition}
+Essa definição formal é feia, mas a ideia é bem simples. $I$ é uma testemunha
+se ter uma configuração específica em $I$, significa pertencer a $A$.
+Por exemplo,
+se percolamos $G(n,p)$ e estamos interessados no evento de conter
+algum triângulo,
+se $\omega$ contém um triângulo $T$, então este serve de testemunha para
+o evento $A$. Qualquer
+outro $\omega'$ que é igual a $\omega$ em $T$,
+pertence também a $A$.
+
+Agora podemos ir mais além. Dadas duas famílias crescentes $A$ e $B$,
+definimos o evento $A \square B$
+sendo os pontos tais que $A$ e $B$ podem ser disjuntamente testemunhadas.
+\[A \square B = \{\exists I,J \subset E, I \cap J = \varnothing, I
+\text{ é testemunha de } A, J \text{ é testemunha de } B \}\]
+Se $A$ é o evento de conter um $K_3$ em $G(n,p)$ e $B$ é o evento de
+conter um $C_4$,
+$A \square B$ seria o evento de conter um $K_3$ e um $C_4$ aresta-disjuntos.
+
+Conseguimos uma desigualdade, quase recíproca a Harris
+\begin{theorem}[Berg-Kestern]
+	Sejam $A,B \subset \{0,1\}^E$, temos
+	\[
+		\Pr(A \square B) \leq \Pr(A)\Pr(B).
+	\]
+\end{theorem}
+\begin{remark}
+	Essa desigualdade é bem intuitiva, acontecer disjuntamente parece mais difícil
+	que acontecer independentemente
+\end{remark}
+
+Provamos o teorema somente para $A$ e $B$ crescentes.
+Essa prova é bem legal, vamos revelando as arestas sequencialmente e
+ficamos atentos
+quando que uma aresta está sendo usada de testemunha para $A$ e $B$
+ao mesmo tempo.
+A prova que o Augusto fez pode ser encontrada no Bela também - mas ele fez de maneira 
+muito muito mais legal em sala.
 
