@@ -1,0 +1,190 @@
+\section{Aula 6}
+
+Hoje vimos um belíssimo teorema em aula sobre decaimento exponencial
+e comportamento
+de campo médio de $\Theta(p)$ em $\Z^d$.
+
+\begin{theorem}
+	Seja $p_c$ a probabilidade crítica de percolação em $\Z^d$. Então, para todo
+	$p < p_c$ existem $c = c(p)$ e $C = C(p)$, tal que
+	\[
+		\Theta_n(p) = \Pr(\vec{0} \leftrightarrow \partial B_n) \leq Ce^{-cn}.
+	\]
+	Ademais, para $p > p_c$, temos
+	\[
+		\Theta(p) = \Pr_p(\vec{0} \leftrightarrow \infty) > \frac{p - p_c}{2}.
+	\]
+\end{theorem}
+\begin{remark}
+ O decaimento exponencial trata-se justamente da primeira parte do teorema,
+	enquanto a segunda parte chama-se comportamento de campo médio. O Augusto
+	disse que esse nome vem da similaridade da percolação em $G(n,p)$.
+\end{remark}
+
+A prova que veremos foi encontrada pelo Dominil-Copin e pelo Tassion. Ela é bem
+espertinha, mas precisa de umas definições e leminhas.
+
+\begin{definition}
+	Dado um conjunto finito $S \subset \Z^d$, com $0 \in S$, definimos
+	\[
+		\phi_p(S) = \sum_{\substack{(x,y) \in E\\x\in S, y\not \in S}} p
+		\Pr(0 \leftrightarrow_S x).
+	\]
+	Onde $\{0 \leftrightarrow_S x\}$ significa que existe um caminho
+	aberto que passa
+	somente por vértices de $S$.
+\end{definition}
+
+De certa forma, $\phi_p(S)$ é a média do número de arestas abertas
+conectando $0$ para fora de $S$.
+Com essa definição, já conseguimos um leminha bonitinho.
+\begin{lemma}
+	Se existe $S \subset \Z^d$ finito com $0 \in S$, tal que $\phi_p(S) < 1$,
+	então existe $C,c > 0$ tal que, para $n$ suficientemente grande,
+	\[
+		\Pr(0 \leftrightarrow \partial B_n) \leq Ce^{-cn}.
+	\]
+\end{lemma}
+\begin{proof}
+	Suponha que exista tal $S$ e seja $|S| = k$. Em particular,
+	se $\{0 \leftrightarrow \partial B_n\}$, como $0 \in S$, deve existir alguma
+	aresta aberta $(x,y)$ saindo de $S$ com $y \leftrightarrow \partial B_n$.
+	Além do mais, o caminho de $y$ para a borda não precisa voltar para dentro
+	de $S$.
+	Portanto, pelo union bound e pela observação anterior,
+	\[
+		\Pr(0 \leftrightarrow \partial B_n) \leq
+		\sum_{\substack{(x,y) \in E\\x\in S, y\not \in S}} \Pr(0 \leftrightarrow_S x
+		\land (x,y) \in (\Z^d)_p \quad \square \quad y \leftrightarrow \partial B_n).
+	\]
+	Usando a desigualdade de BK \ref{trm:bk} e notando que a
+	distância de $y$ até
+	$\partial B_n$ é pelo menos $n-k$, temos que o lado direito é menor que
+	\[
+		\sum_{\substack{(x,y) \in E\\x\in S, y\not \in S}} p\Pr(0 \leftrightarrow_S x)
+		\Pr(0 \leftrightarrow \partial B_{n-k}) = \phi_p(S) \Pr(0
+		\leftrightarrow \partial B_{n-k}).
+	\]
+	Por indução, $\Pr(0 \leftrightarrow \partial B_n) \leq (\phi_p(S))^{n/k}$.
+\end{proof}
+
+Com esse leminha, definimos uma nova probabilidade crítica que
+mostraremos ser igual a $p_c$.
+\begin{definition}
+	Seja $\tilde{p}_c \in [0,1]$ o supremo dos $p$ tal que existe $S$
+	satisfazendo $\phi_p(S) < 1$.
+	Crucialmente, definindo
+	\[
+		A = \bigcup_{0 \in S \subset \Z^d} \{p \in [0,1] : \phi_p(S) < 1\}
+	\]
+	temos
+	\[
+		\tilde{p}_c = \sup A
+	\]
+	e como $A$ é um conjunto aberto, $\tilde{p}_c \not \in A$.
+
+\end{definition}
+
+Segue imediatamente do lema anterior que se $p < \tilde{p}_c$, temos
+decaimento exponencial. Vamos mostrar que para $p > \tilde{p}_c$, vale
+a segunda parte do teorema, notamos que isso implica imediatamente
+que $\tilde{p}_c = p_c$.
+
+A graça aqui é que supor que $p > \tilde{p}_c$ nos dá muita
+informação sobre $(\Z^d)_p$. Sabemos que para
+qualquer $S$ descrito como antes, $\phi_p(S) \geq 1$. Seguindo a
+intuição anterior, para
+todo $S$ a gente em média consegue escapar. Como era de se esperar,
+vamos provar a segunda parte
+desse teorema usando a formula de Russo \ref{trm:russo} e uma igualdade esperta.
+
+\begin{lemma}
+	Definimos o conjunto aleatório
+	\[
+		\cS_n = \{v \in B_{n-1} : v \not \leftrightarrow \partial B_n \}
+	\]
+	de elementos que não conectam ao bordo de $B_n$, temos que
+	\begin{equation}
+		\frac{d}{dp} \Theta_n (p) = \frac{1}{p(1-p)} \Ex \phi_p(\cS_n)
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	Sabemos por \ref{trm:russo} que
+	\[
+		\frac{d}{dp} \Theta_n(p) = \sum_{e \in E(B_n)} \Pr(e \text{ pivotal
+		para } [0 \leftrightarrow \partial B_n])
+	\]
+	Como $\{e \text{ pivotal para } A\}$ é independente do valor de $e$,
+	podemos pagar
+	um $(1-p)$ e pedir que $e$ esteja fechada. Portanto,
+	\[
+		\frac{d}{dp} \Theta_n(p) = \frac{1}{1-p}\sum_{e \in E(B_n)} \Pr(e
+		\text{ fechada e } e \text{ pivotal para } [0 \leftrightarrow \partial B_n]).
+	\]
+	Note que os eventos anteriores implicam justamente que $[0 \not
+	\leftrightarrow \partial B_n]$.
+	Agora vamos separar o mundo de acordo com $\cS_n = S$.
+	Como $[0 \not \leftrightarrow \partial B_n]$, segue que $0 \in
+	\cS_n$. Tomando um union bound nos valores de $\cS_n$
+	possíveis, temos que o somatório anterior se expressa como
+	\[
+		\frac{1}{1-p}\sum_{0 \in S \subset B_{n-1}}
+		\sum_{e \in E(B_n)}
+		\Pr(e \text{ fechada e } e \text{ pivotal para }
+		[0 \leftrightarrow \partial B_n] \text{ e } \cS_n = S)
+	\]
+	Agora $e$ ser pivotal e fechada com $\cS_n = S$ acontece se e
+	somente se $e$ conecta
+	um elemento de $S$ para outro fora dele e, além do mais,
+	que exista um caminho conectando $0$ até $e$ em $S$. Disso podemos
+	reescrever a última soma como
+	\[
+		\frac{1}{1-p}\sum_{0 \in S \subset B_{n-1}}
+		\sum_{\substack{(x,y) \in E(\Z^d)\\ x \in S, y \not \in S}}
+		\Pr(0 \leftrightarrow_S x \text{ e } \cS_n = S)
+	\]
+	Como os eventos dentro da probabilidade são independentes, segue que
+	\[
+		\Theta_n'(p) =
+		\frac{1}{1-p}\sum_{0 \in S \subset B_{n-1}} \Pr(\cS_n = S)
+		\sum_{\substack{(x,y) \in E(\Z^d)\\ x \in S, y \not \in S}}
+		\Pr(0 \leftrightarrow_S x) = \frac{1}{p(1-p)}\Ex \phi_p(\cS_n).
+	\]
+\end{proof}
+
+Estamos prontos para provar o teorema.
+
+\begin{proof}[Prova do teorema bonitão]
+	Seja $\tilde{p}_c$ definido como antes. Já vimos que decaimento
+	exponencial vale para $p < \tilde{p}_c$.
+	Agora tome $p > \tilde{p}_c$. Se $\Theta_n(p) \geq 1/2$, vale imediatemente
+	que $\Theta_n(p) \geq (p - \tilde{p}_c)/2$. Se não, suponha que
+	$\Theta_n(p) < 1/2$, nesse caso,
+	com probabilidade maior ou igual a $1/2$, $0 \subset \cS_n$. Como $p
+	> \tilde{p}_c$,
+	para todo tal $\cS_n$, temos $\phi_p(S) \geq 1$. Portanto,
+	\[
+		\Theta_n'(p) \geq \Ex \phi_p(\cS_n) \geq 1 - \Theta_n(p) \geq 1/2.
+	\]
+	Integrando, temos o resultado para $\Theta_n$. Levando $n \to
+	\infty$, recuperamos
+	o resultado total. Note que isso implica que $\tilde{p}_c = p_c$.
+\end{proof}
+
+\begin{remark}
+	Essa definição é legal pois ela já dá (pela observação de $p_c \not \in A$)
+	que $\Ex_{p_c}[|C_0|] = \infty$. Basta notar que
+	\[
+		\Ex_{p_c}[|C_0|] = \sum_{n \geq 1} \sum_{v \in \partial B_n} \Pr(0
+		\leftrightarrow_{B_n} v) = \frac{1}{p_c}\sum_{n} \phi_{p_c}(B_n) = \infty.
+	\]
+\end{remark}
+
+Com um pouco de esforço, vemos também que implica que dado $x,y$ com
+distância $n$ entre eles,
+$\Pr(x \leftrightarrow y) \geq (Cn)^{-d}$. Basta notar que (tomando $x = 0$)
+\begin{align*}
+	\Pr(0 \leftrightarrow y) \geq \frac{1}{|\partial B_n|} \Pr(0
+	\leftrightarrow \partial B_n) \geq \frac{1}{p_c |\partial
+	B_n|}\phi_{p_c}(B_{n-1}) \geq \frac{1}{p_c|\partial B_{n}|}
+\end{align*}
