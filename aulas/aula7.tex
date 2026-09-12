@@ -1,0 +1,77 @@
+\section{Aula 7}
+
+Serei um pouco mais breve nessas notas, pois essa aula
+foi mais expositiva. Vimos percolação em redes hierárquicas.
+Começamos com um grafo $G=G_1$ conexo com dois vértices especiais
+$a$ e $b$. Definimos um grafo $G_i$ recursivamente
+(considerando uma orientação de $G$  e suas arestas)
+trocando todas as arestas ${u,v}$ de $G_{i-1}$ por uma cópia de $G$
+onde (podendo mudar com orientação) $u$ se torna $a$ e $v$ se
+torna $b$.
+
+O nosso exemplo foi o diamante, Figura 1 de [\url{https://arxiv.
+org/pdf/2606.11503}].
+
+O nosso evento de interesse agora é conectividade entre os vértices
+$a_i,b_i$ quando
+percolamos arestas independentemente com probabilidade $p$. Mais precisamente,
+queremos entender bem
+\[
+	f_i(p) = \Pr_p^i(a_i \leftrightarrow b_i).
+\]
+É fácil ver que uma dinâmica é estabelecida nessas probabilidades. Se pensarmos
+que $G_{i}$ é uma cópia de $G$ em que trocamos cada aresta por $G_{i-1}$,
+sacamos imediatamente que $f_i(p) = f_1(f_{i-1}(p))$. Para facilitar
+notação, chamaremos $f_1$ somente de $f$. Isso significa que estamos
+interessados
+precisamente nas iteradas de $f$ e queremos entender esse sistema dinâmico.
+
+O Augusto, o Gugu e seus coautores mostraram que se o grafo satisfaz
+duas condições básicas:
+\begin{itemize}
+	\item  $d(a,b) \geq 2$.
+	\item O corte mínimo entre $a$ e $b$ usa mais de uma aresta.
+\end{itemize}
+então existem exatamente três pontos fixos $0, 1$ e $p_c$. Onde $0$ e
+$1$ são atratores
+e $p_c^*$ é hiperbólico. É fácil ver pela condição $1$ que se
+estivermos suficientemente
+próximos de $0$, somos atraídos para $0$ em velocidade duplo
+exponencial. Mais precisamente,
+perto de $0$, $f(p) \leq Cp^2$, donde segue que se $p < 1/C$, então
+$f^{k}(p) \leq \exp(-\alpha2^k)$. Isso pode parecer rápido demais, mas o Augusto
+fez o comentário que eu considero mais importante dessa aula. Nesse
+modelo, o número de vizinhos
+de $a_k$ é da ordem de $2^k$. De fato, é como se estivessemos olhando
+para um quadrado em $\Z^2$
+e estamos interssados na probabilidade de cruzar esse quadrado, onde
+$a_k$ e $b_k$ representam
+lados opostos. Vendo dessa forma, devemos realmente pensar que $2^k$
+faz o papel de $n$
+em percolação normal e estamos obtendo aqui um decaimento exponencial.
+
+Esse sketch já serve para qualquer $p < p_c$, pois a função é
+crescente e admite somente
+$0$ como ponto crítico. Então para todo ponto, em tempo finito
+conseguimos esse decaimento.
+Exatamente a mesma cois a pode ser observada para $p > p_c$ e
+considerando a função $1 - (1-p)^2$.
+
+Depois vimos estratégias usadas para calcular mais precisamente os
+expoentes críticos, nada foi muito
+formal mas é bem bonitinho. Eles foram bem espertinhos em como fazer
+isso. Escolhendo uma aresta $e$
+aleatória em $G_k$, ficamos interessados na probabilidade de $E$
+conectar com $a_k$ e $b_k$.
+Definindo $X_k^a$ sendo o número de arestas que só conectam com $a$,
+$X_k^b$ as que só conectam com $b$
+e $X_k^{a,b}$ as que conectam com ambos. Conseguimos escrever um
+sistema dinâmico tridimensional
+com $(\Ex X_k^a, \Ex X_k^b, \Ex X_k^{a,b})$, estudando propriedades
+da matriz de transição, dá
+para checar que ela é uma soma de subestocásticas e que sua norma
+cresce exponencialmente com
+uma função de $p$, $||T_{k}|| = (Cp)^k$ também.
+
+Essa aula foi divertida, vai que um dia veremos uma sobre redes de
+hipergrafos \Smiley.
