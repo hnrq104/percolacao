@@ -1,0 +1,49 @@
+\section{Aula 8}
+
+Hoje vimos o início de percolação no plano e umas ideias de renormalização.
+Vamos dar seguimento como se o modelo fosse $(\Z^2)$, mas a ferramentação 
+é robusta para modelos planares mais complicados.
+
+Seja $R = R_{3n \times n}$ um retângulo de largura $3n$ e altura $n$ em $\Z^2$. Definimos 
+o evento $H(R)$ que determina se existe um cruzamento horizontal 
+de $R$ por um caminho aberto e $V(R)$ o evento que existe um cruzamento aberto vertical.
+Uma observação importante (Lemma 1 Cap 3, Bela) é que se $H(R)$ acontece,
+então $V(R)$ não acontece no dual e vice versa. Isso é, olhando para os elos de $R$
+e considerando os elos duais $R^c$, exatamente um dos eventos $H(R)$ ou $V(R^c)$ ocorrem.
+Isso é bem intuitivo mas uma prova bonitinha pode ser vista no livro também.
+
+Como corolário dessa observação, temos que
+\[
+    \Pr_p(H(R)) + \Pr_{1-p}(V(R^c)) = 1.
+\]
+
+O principal lemma que vimos nessa aula, é como usar informações sobre $h_n = \Pr(V(R_{3n \times n}))$
+para estimar $h_{2n}$ e usar isso para conseguir bounds super polinomiais em $\Pr(0 \leftrightarrow \partial B_n)$.
+Essa é a técnica de renormalização que tentarei descrever sutilmente aqui.
+
+\begin{lemma}[Renormalização]
+    Para todo $n$, vale que 
+    \[
+    h_{2n} \leq (5h_n)^2.
+    \]
+\end{lemma}
+\begin{proof}
+    Considere o retângulo $R = [1, 6n] \times [1, 2n]$. Dividimos $R$ nas partes 
+    $A = [1,6n] \times [1,n]$ e $B = [1,6n] \times [n+1,2n]$. Agora, podemos $A$
+    cobrir $A$ com $5$ retângulos de lados $(n,3n)$ sendo três deles horizontais e dois 
+    verticais de forma que se cruzamos $R$ verticalmente, então devemos cruzar algum dos 
+    retângulos que cobrem $A$ verticalmente também. 
+    O mesmo pode ser feito com $B$ com retângulos disjuntos, 
+    disso segue por independência que 
+    \[
+    h_{2n} \leq \Pr(V(A) \cap V(B)) \leq (5h_n)^2.
+    \]
+\end{proof}
+
+É fácil ver então que se existe $n_0$ tal que $h_{n_0} < 1/25$, então 
+$h_{2^k n_0}$ decresce super exponencialmente em $k$. O Augusto provou um bound 
+da forma $h_n \leq \exp(-c \sqrt{n})$ para $n$ diádico múltiplo de tal $n_0$. 
+
+Separando o quadrado de lado $3n$ num quadradinho central e retângulos laterais de tamanho $(3n,n)$. 
+Temos então que se $0$ conecta a borda, ele deve cruzar um dos retângulos e
+$\Pr(0 \leftrightarrow \partial B_3n) \leq 4 h_{n}$  o que dá um decaimento super polinomial.
