@@ -1,0 +1,87 @@
+\section{Aula 10}
+
+Essa aula foi mágica. Não só foi muito legal com belos teoremas,
+como as provas foram fantásticas também. Infelizmente, não serei ser 
+capaz de fazer juz a essa aula com essas míseras notas em latex,
+tudo foi com belos desenhos então tentarei meu melhor em argumentar 
+verbalmente o que aconteceu.
+
+Seguimos tentando provar o teorema de Kesten, mas não pelo método 
+do Béla descrito na seção passada. Usamos as definições de $p^-$ e $p^+$
+que críamos ser condições finitas para percolação.
+
+Vimos a um tempo atrás, que existe um $\eta$ e um $m$ tal que se $R$ é um 
+retângulo $[3m]\times[m]$ e $\Pr_p(H(R)) < \eta$, então para retângulos 
+$R_n = [3n]\times[n]$ tínhamos $\Pr_p(H(R_n)) \to 0$ quando 
+$n \to \infty$. Da mesma forma, se $\Pr_p(H(R)) > 1 - \eta$,
+então $\Pr_p(H(R_n)) \to 1$. Com essas coisas, havíamos definido 
+os pontos críticos
+\[
+    p^{-} := \sup\{p \in [0,1] : \exists n \quad \Pr_p(V(R_n)) < \eta\} \quad
+\]
+e
+\[
+    p^{+} := \inf\{ p \in [0,1] : \exists n\quad  \Pr_p(V(R_n)) > 1 - \eta\}.
+\]
+
+Além do mais, por Russo-Seymour-Welsh (ou o que vimos na seção passada), 
+$1/2 \in [p^{-}, p^{+}]$. A grande ideia é mostrar que $p^{-} = p^{+}$ e para isso 
+vamos ver (assim como no Béla) que se $p^{-} < p < p^{+}$ então
+\[
+    \frac{d\Pr_p(V(R_n))}{dp} \gtrsim \log n
+\]
+Para fazer isso, obviamente usaremos Margulis-Russo [\ref{trm:russo}] 
+e calcularemos 
+\[\Ex[\# \{\text{elos pivotais para }V(R_n)\}].
+\]
+Curiosamente, não somaremos sobre a probabilidade de um elo ser pivotal (como no livro),
+mas veremos que, com probabilidade positiva constante, $c\log n$ elos são pivotais. Para isso 
+precisaremos de stickers.
+
+Consideramos duas percolações $\Omega_A$ e $\Omega_B$ independentes de $\Z^2$ (funciona com qualquer modelo de 
+arestas independentes). Sejam $E_A$ 
+em $\Omega_A$ e $E_B$ em $\Omega_B$ eventos e suponhamos que $E_A$ pode 
+ser encontrada sem necessariamente explorar todas as arestas. Vamos 
+considerar um novo espaço idêntico em probabilidade $\Omega_{A + B}$ 
+onde $\Omega_A$ tem prioridade sobre $\Omega_B$. Uma aresta de $\Omega_{A+B}$
+tem o valor que tem em $\Omega_A$ se foi explorada lá, se não ela 
+tem o valor que tem em $\Omega_B$. Definimos $E_{A+B}$ o evento onde 
+$E_A$ ocorre e $E_B$ acontece a menos dos valores das arestas que determinam $E_A$.
+
+Isso daqui requer um desenho, na aula pensamos em $E_A$ como $V(R)^*$ (estrela aqui é o dual) 
+e $E_B$ como achar um Mickey em $R$ no primal. Então $E_{A + B}$ é como achar um 
+caminho dual cruzando $R$ horizontalmente e um Mickey em $R$ (que pode estar cruzado pelas 
+arestas reveladas na descoberta do cruzamento dual). Note que com um coupling esperto,
+$\Pr_p(E_{A + B}) \geq \Pr_p(E_A)\Pr_p(E_B)$. 
+
+Vamos definir um algoritmo com stickers que com probabilidade positiva acha muitas arestas pivotais.
+Primeiramente notamos que, para uma aresta ser pivotal, deve ter um cruzamento horizontal aberto (ao menos 
+possivelmente dela) usando ela e um primal vertical passando por ela também. Nosso algoritmo 
+será num primeiro passo achar esse cruzamento horizontal, depois achar o vertical e por fim 
+achar vários outros aneis duais cada um dando uma nova aresta pivotal. Serei muito breve 
+em como fazer isso pois realmente requer desenhos. 
+
+O sketch da prova é justamente esse. No primeiro passo, exploramos em $\Omega_A$ um caminho
+mais inferior que cruza horizontalmente $[3n]\times[n/2]$, note que isso por hipótese 
+acontece com probabilidade ao menos $c$ e revela arestas somente abaixo 
+do caminho. Se conseguimos achar esse caminho, o segundo passo é procurar
+em $\Omega_B$ um caminho no dual mais a esquerda que cruza verticalmente $[n/3]\times[n]$,
+por hipótese isso acontece com probabilidade positiva $c$, revelamos arestas somente 
+a esquerda do caminho e, crucialmente, considerando o sticker dos eventos dos dois primeiros passos, 
+achamos com probabilidade $c^2$ uma aresta pivotal $e$. Agora consideramos 
+um terceiro sticker que é achar $c\log n$ cercas quadradas fechadas centradas em $e$.
+Mais precisamente, consideramos o anel $D_k = B_{3^{k+1}} - B_{3^k}$ e os eventos $C_k$ para $k < M$ 
+que existe um caminho dual em $D_k$ que cerca o interior. Por hipótese $\Pr_p(C_k) > c^4$.
+Como temos na ordem de $M \approx \log n$ aneis contidos em $R$, 
+cada um independente com probabilidade $c_4$ de tá fechadinho,
+com probabilidade pelo menos $1/2$ temos que $c^4M/2 $ estão fechados. Considerando 
+o sticker, achamos que cada um desses aneis agora nos dá também uma 
+aresta pivotal. Portanto com probabilidade pelo menos $c^2/2$ achamos na ordem de $\log n$
+arestas pivotais, o que prova o resultado.
+
+Depois vimos algo mais legal ainda. Com uma ideia de branching process muito esperta,
+o Augusto sugeriu como transformar esse $\log n$ em $n^{\eps}$ 
+para algum $\eps$ pequeno. É muito bonito, mas um pouco complicado de explicar sem 
+desenhar. Como essa amostra daqui já tá muito cabulosa escrita em palavras, tentar guardar 
+mentalmente mesmo só.
+
