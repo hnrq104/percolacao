@@ -1,96 +1,117 @@
 \section{Aula 9}
 
-Nessa aula continuamos o estudo de percolação em $\Z^2$ com o objetivo de chegar 
-no Teorema de Kesten. 
+Nessa aula continuamos o estudo de percolação em $\Z^2$ com o objetivo de chegar
+no Teorema de Kesten.
 \begin{theorem}
-    $p_T(\Z^2) = p_H(\Z^2) = 1/2$ e $\Theta(1/2) = 0$. 
+	$p_T(\Z^2) = p_H(\Z^2) = 1/2$ e $\Theta(1/2) = 0$.
 \end{theorem}
 
-Vimos o método de Russo-Seymour-Welsh e lemas de cruzamento de retângulos 
-e como eles implicam comportamento sub-crítico e super-crítico. Como não 
-serei nem um pouco capaz de reproduzir todos os desenhos feitos em aula (foi só isso basicamente),
-eu vou por aqui lemas equivalentes que estão no Bela. 
+Vimos o método de Russo-Seymour-Welsh e lemas de cruzamento de retângulos
+e como eles implicam comportamento sub-crítico e super-crítico. Como não
+serei nem um pouco capaz de reproduzir todos os desenhos feitos em
+aula (foi só isso basicamente),
+eu vou por aqui lemas equivalentes que estão no Bela.
 
-Precisamos de uma observação que já foi vista antes, é uma consequência fácil da dualidade 
-de $\Z^2$. Novamente, dado um retângulo $R \subset \Z^2$ com lados $k$ por $l$, definimos $H(R)$ 
-o evento que existe um caminho aberto cruzando $R$ horizontalmente e $V(R)$ o mesmo verticalmente.
-Notando que cruzamos horizontalmente $R$ se e somente se não 
+Precisamos de uma observação que já foi vista antes, é uma
+consequência fácil da dualidade
+de $\Z^2$. Novamente, dado um retângulo $R \subset \Z^2$ com lados
+$k$ por $l$, definimos $H(R)$
+o evento que existe um caminho aberto cruzando $R$ horizontalmente e
+$V(R)$ o mesmo verticalmente.
+Notando que cruzamos horizontalmente $R$ se e somente se não
 cruzamos verticalmente no dual (e vice versa), temos a seguinte observação.
 
 \begin{observation}
-    \begin{enumerate}
-        \item Se $R$ e $R'$ são retângulos $k \times l-1$ e $k-1 \times l$ respectivamente, então 
-        \[
-        \Pr_p(H(R)) + \Pr_{1-p}(V(R')) = 1.
-    \]
-    \item Se $R$ é um retângulo $n+1$ por $n$, então 
-        \[\Pr_{1/2}(V(R)) = 1/2.\]
-    
-    \item se $Q$ é um quadrado $n$ por $n$, então 
-        \[\Pr_{1/2}(V(Q)) = \Pr_{1/2}(H(Q)) \geq 1/2\]
-    \end{enumerate}
+	\begin{enumerate}
+		\item Se $R$ e $R'$ são retângulos $k \times l-1$ e $k-1 \times l$
+			respectivamente, então
+			\[
+				\Pr_p(H(R)) + \Pr_{1-p}(V(R')) = 1.
+			\]
+		\item Se $R$ é um retângulo $n+1$ por $n$, então
+			\[\Pr_{1/2}(V(R)) = 1/2.\]
+
+		\item se $Q$ é um quadrado $n$ por $n$, então
+			\[\Pr_{1/2}(V(Q)) = \Pr_{1/2}(H(Q)) \geq 1/2\]
+	\end{enumerate}
 \end{observation}
 
-
-Para facilitar nossa vida, em vez de fazer a prova do Augusto do lema de Russo-Seymour-Welsh
-que envolve separação de casos nas formas que estamos cruzando um retângulo, vamos fazer a prova 
+Para facilitar nossa vida, em vez de fazer a prova do Augusto do lema
+de Russo-Seymour-Welsh
+que envolve separação de casos nas formas que estamos cruzando um
+retângulo, vamos fazer a prova
 do Bela.
 
 \begin{lemma}
-    Seja $R = [m]\times[2n]$, $m \geq n$, um retângulo. Seja $X(R)$ o evento que existem caminhos 
-    abertos $P_1$ e $P_2$ tais que $P_1$ cruza verticalmente o quadrado $Q = [n]\times[n]$ 
-    e $P_2$ encosta em $P_1$ em $Q$ e toca o lado direito de $R$. Então 
-    \[
-        \Pr_p(X(R)) \geq \Pr_p(H(R))\Pr_p(V(Q))/2.
-    \]
+	Seja $R = [m]\times[2n]$, $m \geq n$, um retângulo. Seja $X(R)$ o
+	evento que existem caminhos
+	abertos $P_1$ e $P_2$ tais que $P_1$ cruza verticalmente o quadrado
+	$Q = [n]\times[n]$
+	e $P_2$ encosta em $P_1$ em $Q$ e toca o lado direito de $R$. Então
+	\[
+		\Pr_p(X(R)) \geq \Pr_p(H(R))\Pr_p(V(Q))/2.
+	\]
 \end{lemma}
 
 \begin{remark}
-    Ver Figura 5 do cap. 2 do Bela. O Augusto fez esse lema durante a sua prova.
+	Ver Figura 5 do cap. 2 do Bela. O Augusto fez esse lema durante a sua prova.
 \end{remark}
 
 \begin{proof}
-    A prova disso é bem bonitinha. Suponha que $V(Q)$ acontece, então existe um caminho $P_1$ mais 
-    a esquerda que separa $Q$ num pedaço esquerdo e num pedaço direito. Crucialmente, fazendo 
-    uma exploração boba, podemos revelar $P_1$ independentemente das arestas do lado direito 
-    de $Q$. Podemos refletir $P_1$ para o quadrado $[n]\times [n+1,2n]$ em um outro caminho $P_1'$.
-    Agora suponha que $H(R)$ acontece, como não revelamos nada a direita de $P_0$, o caminho 
-    $P_2$ que cruza $R$ horizontalmente tem a mesma chance de bater em $P_1$ quanto $P_1'$. Usando 
-    Harris, segue que $\Pr(X(R)) \geq \Pr(V(Q))\Pr(H(R))/2$.
+	A prova disso é bem bonitinha. Suponha que $V(Q)$ acontece, então
+	existe um caminho $P_1$ mais
+	a esquerda que separa $Q$ num pedaço esquerdo e num pedaço direito.
+	Crucialmente, fazendo
+	uma exploração boba, podemos revelar $P_1$ independentemente das
+	arestas do lado direito
+	de $Q$. Podemos refletir $P_1$ para o quadrado $[n]\times [n+1,2n]$
+	em um outro caminho $P_1'$.
+	Agora suponha que $H(R)$ acontece, como não revelamos nada a direita
+	de $P_0$, o caminho
+	$P_2$ que cruza $R$ horizontalmente tem a mesma chance de bater em
+	$P_1$ quanto $P_1'$. Usando
+	Harris, segue que $\Pr(X(R)) \geq \Pr(V(Q))\Pr(H(R))/2$.
 \end{proof}
 
-
-Esse lema permite, usando a observação, calcular bons lowerbounds na probabilidade de cruzar 
-retângulos. Por exemplo, definindo $h_{1/2}(m,n) = \Pr(H([m] \times [n]))$, temos 
+Esse lema permite, usando a observação, calcular bons lowerbounds na
+probabilidade de cruzar
+retângulos. Por exemplo, definindo $h_{1/2}(m,n) = \Pr(H([m] \times
+[n]))$, temos
 
 \begin{corollary}
-    Para todo $n \geq 1$, $h(3n,2n) \geq 2^{-7}$.
+	Para todo $n \geq 1$, $h(3n,2n) \geq 2^{-7}$.
 \end{corollary}
 \begin{proof}
-    Seja $Q_1 = [2n]\times[2n]$ e $Q_2 = [n + 1, 3n] \times [2n]$, quadrados de lado $2n$
-    inseridos no retângulo $R = [3n]\times[2n]$. Seja $S = [n+1,2n] \times [n]$ a metade de 
-    baixo da interseção de $Q_1$ e $Q_2$. Segue que 
-    \[
-    H(R) \subset X(Q_1) \cap X(Q_2) \cap H(S).
-    \]
-    Portanto, por Harris e pela observação,
-    \[
-    \Pr(H(R)) \geq 2^{-7}.
-    \]
+	Seja $Q_1 = [2n]\times[2n]$ e $Q_2 = [n + 1, 3n] \times [2n]$,
+	quadrados de lado $2n$
+	inseridos no retângulo $R = [3n]\times[2n]$. Seja $S = [n+1,2n]
+	\times [n]$ a metade de
+	baixo da interseção de $Q_1$ e $Q_2$. Segue que
+	\[
+		H(R) \subset X(Q_1) \cap X(Q_2) \cap H(S).
+	\]
+	Portanto, por Harris e pela observação,
+	\[
+		\Pr(H(R)) \geq 2^{-7}.
+	\]
 \end{proof}
 
-Isso implica o que vimos no final da aula. Se $p \leq 1/2$, então, no dual, retângulos arbitrariamente
-grandes são  cruzados no lado grande com probabilidade positiva constante. Em particular,
-considerando uma bola enorme $B_N$ ao redor do $0$, podemos contornar ela com cercas (feitas desses 
-retângulos) disjuntas que estão fechadas com probabilidade positiva. Segue imediatamente que 
-eventualmente alguma dessas cercas está fechada e temos decaimento polinomial. Fazendo 
-as continhas e os desenhos (Figura 8 Cap 2 Bela), e sendo $N = C^k$ para algum $k$, vemos 
+Isso implica o que vimos no final da aula. Se $p \leq 1/2$, então, no
+dual, retângulos arbitrariamente
+grandes são  cruzados no lado grande com probabilidade positiva
+constante. Em particular,
+considerando uma bola enorme $B_N$ ao redor do $0$, podemos contornar
+ela com cercas (feitas desses
+retângulos) disjuntas que estão fechadas com probabilidade positiva.
+Segue imediatamente que
+eventualmente alguma dessas cercas está fechada e temos decaimento
+polinomial. Fazendo
+as continhas e os desenhos (Figura 8 Cap 2 Bela), e sendo $N = C^k$
+para algum $k$, vemos
 \[
-    \Pr(0 \leftrightarrow \partial B_{N}) \leq (1-\eps)^k = n^{-c}.
+	\Pr(0 \leftrightarrow \partial B_{N}) \leq (1-\eps)^k = n^{-c}.
 \]
-O que prova $\Theta(1/2) = 0$. Na próxima aula veremos que para $p > 1/2$, conseguimos 
-fazer componentes arbitrariamente grandes também, o que finaliza o teorema de Kesten.
-
-
-
-
+O que prova $\Theta(1/2) = 0$. Na próxima aula veremos que para $p >
+1/2$, conseguimos
+fazer componentes arbitrariamente grandes também, o que finaliza o
+teorema de Kesten.
