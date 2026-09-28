@@ -1,0 +1,125 @@
+\section{Aula 11}
+
+Vimos outra prova do resultado da aula passada,
+dessa vez usando uma ferramenta super poderosa. A desigualdade de OSSS.
+Na verdade, vimos a versão mais poderosa do Teorema.
+\begin{theorem}
+	\label{trm:sharp_crossing_transition}
+	Seja $R_n = [3n]\times[n]$ e $p \in [0,1]$ tal que $\eta <
+	\Pr(H(R_n)) < 1 - \eta$
+	para todo $n$. Então, existe $\eps > 0$ tal que
+	\[
+		\frac{d\Pr_p(H(R_n))}{dp} \geq n^{\eps}.
+	\]
+\end{theorem}
+Lembremos que isso prova automáticamente que $p^{-} = p^+$ e que
+$1/2$ é o ponto crítico.
+
+Vamos precisar de algumas definições.
+Seja $f : \{0,1\}^n \to \{0,1\}$ uma função booleana do hipercubo $Q_n$ e
+como sempre, adicionamos a este a medida de probabilidade em que cada coordenada
+é $1$ com probabilidade $p$. Estamos interessados em  $\Pr_p
+\{f(\omega) = 1\} = \Ex_p f$.
+
+Agora suponha que temos um algoritmo $A$ que revela as coordenadas de $\omega$
+uma por uma e que pode usar as informações anteriores. Mais precisamente,
+temos uma sequência de variáveis aleatórias $W_1, \dots, W_n \in [n]$
+que representam a $i$-ésima coordenada a ter sido revelada pelo algoritmo.
+Pedimos que $W_1 \in \cF_1$ e que $W_{i+1} \in \sigma((W_j,
+\omega_j)_{j \leq i})$, isso é,
+a sequência, a menos da primeira variável é previsível. Note que é possível que
+revelar coordanadas não nos dê nenhuma informação. Por exemplo,
+pode ser que o valor de $f$ esteja determinado olhando só para três coordenadas,
+$W_1, W_2$ e $W_3$ ($f$ no contexo de percolação poderia ser tem um
+caminho de tamanho $3$)
+então $W_4 \dots$ não precisariam mais ser observadas, então tomariam
+valor arbitrário.
+
+Para ser super exato, definimos um stopping time
+\[
+	\tau = \inf \{t : \omega'|_{(W_i)\leq t} = \omega|_{(W_i) \leq t}
+	\implies f(\omega') = f(\omega)\}
+\]
+e setamos $W_j = *$ (qualquer coisa que faz sentido) para todo $j > \tau$.
+Por fim, dadas $f$, algoritmo $A$ e coordenada $i$ definimos
+\[
+	\text{Inf}_i(f) = \Pr_p(i \text { pivotal para } f) \quad \& \quad
+	\delta_i^A = \Pr_p(\exists j \leq \tau : W_j = i).
+\]
+Para por em palavras, $\delta_i^A$ é a probabilidade de que durante o
+nosso algoritmo,
+exploramos a coordenada $i$.
+
+\begin{theorem}[OSSS]
+	\label{trm:osss}
+	Seja $f$ uma função booleana $f : \{0,1\}^n \to \{0,1\}$ e $A$ um algoritmo
+	para determinar $f$. Então,
+	\[
+		\text{Var}(f) \leq p(1-p) \sum_{i = 1}^n \text{Inf}_i(f) \delta_i^A(f).
+	\]
+\end{theorem}
+
+\begin{remark}
+	Note que um lowerbound em $\text{Var}(f)$ e um upperbound em $\max_i
+	\delta_i^A(f)$
+	implicam um lowerbound em $\frac{d\Ex_p f}{dp}$ por Margulis Russo. É assim
+	que aplicamos a desigualdade de OSSS.
+\end{remark}
+
+Vou dar só um sketch da prova, é bem bonitinha.
+\begin{proof}
+	Notamos primeiramente que $\text{Var}(f) = \Ex (f - \Ex f)^2 = \Ex
+	|f(\omega) - f(\omega')|/2$
+	onde $\omega$ e $\omega'$ são independentes. A ideia da prova será
+	fazer Lindenberg swapping
+	com um  coupling esperto, revelando $\omega$ com o algoritmo $A$ e supor que
+	as outras coordenadas pertencem a $\tilde{\omega}$. Para isso,
+	vamos supor que reordenamos as coordenadas de acordo com $W_1, \dots W_n$ e
+	consideramos
+	\[f^{(k)} =  f(\omega'_{W_1}, \dots, \omega'_{W_k}, \omega_{W_{k+1}}, \dots,
+	\omega_{W_{\tau}}, \omega'_{W_{\tau + 1}}, \dots, \omega'_{W_n})\]
+
+	Segue pela definição de $\tau$ que
+	\[
+		\Ex|f(\omega) - f(\omega')| \leq \Ex \sum_{k = 0}^{n-1} |f^{(k)} -
+		f^{(k+1)}|  = \Ex \sum_{k = 0}^{\tau - 1} |f^{(k)} - f^{(k+1)}|
+	\]
+	Abrindo a conta, temos
+	\[
+		\Ex \sum_{k = 0}^{n-1} |f^{(k)} - f^{(k+1)}| = \sum_{k = 0}^{n-1}
+		\sum_{i = 1}^n \Ex \id[k - 1 \leq \tau]\id[W_k = i] |f^{(k-1)} - f^{(k)}|.
+	\]
+	Agora condicionamos em $\cF_{k-1}$ para cada esperança e vemos que temos
+	\[
+		\Ex \id[k - 1 \leq \tau]\id[W_k = i] |f^{(k-1)} - f^{(k)}| = \Ex
+		\id[k-1 \leq \tau] \id[W_{k-1} = i] \Ex[ |f^{(k-1)} - f^{(k)}| | \cF_{k-1}]
+	\]
+	Agora essa última variável é $1$ se e somente se $\omega'_i \neq
+	\omega_i$ e $i$ for pivotal com probabilidades independentes!
+	segue que essa esperança é precisamente $2p(1-p)\text{Inf}_i(f)
+	\Pr(k - 1 \leq \tau , W_{k-1} = i)$. Somando
+	e trocando a ordem temos exatamente
+	\[
+		2p(1-p)\sum_{k = 0}^{n-1} \sum_{i = 1}^n \text{Inf}_i(f) \Pr(k-1
+		\leq \tau, W_{k-1} = i) =
+		2p(1-p) \sum_{i = 1}^n \text{Inf}_i(f) \delta_i^A(f).
+	\]
+\end{proof}
+
+Vamos aplicar isso para provar \ref{trm:sharp_crossing_transition}.
+\begin{proof}
+	Seja $f = \id[H(R)]$ e $p \in [p^-, p^+]$, logo $\Ex_p f \in (\eta, 1-\eta)$,
+	$\text{Var}(f) \geq \eta^2$ e $p(1-p) \geq c$. Temos portanto,
+	\[
+		\frac{d\Ex_p f}{dp} \geq \frac{c\eta^2}{\max_i \delta_i^A}.
+	\]
+	Considere o seguinte algoritmo. Escolhemos $X \in [n,2n]$ aleatóriamente
+	e exploramos os caminhos saindo da linha vertical ${X} \times [n]$.
+	A probabilidade
+	de uma aresta $e$ ser revelada é cotada por $\Pr(d(L_X, e) \leq
+	\sqrt{n}) + \Pr(e \leftrightarrow \partial B_{\sqrt{n}})$.
+	Pela forma que escolhemos $X$, a primeira probabilidade é cotada por
+	$O(n^{-1/2})$,
+	a segunda é cotada por $O(n^{-\eps})$ por Russo-Seymour-Welsh.
+	Isso completa a prova.
+\end{proof}
