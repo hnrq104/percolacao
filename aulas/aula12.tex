@@ -1,0 +1,181 @@
+\section{Aula 12}
+Nessa aula usamos OSSS [\ref{trm:osss}]
+para dar outra prova de sharpness no mesmo estilo que na aula 6 com
+um lema de condição finita. A prova é realmente super mágica.
+Vamos fazer em $\Z^2$ mas tudo aqui se generaliza fácilmente para $\Z^d$.
+
+Nosso objetivo aqui é mostrar sharpness como antes. Isso é
+queremos o seguinte teorema.
+\begin{theorem}
+	Seja $p < p_c$, então vale sharpness
+	\[
+		\Theta_p(n) = \Pr_p(0 \leftrightarrow \partial B_n) \leq \exp(c(p)n).
+	\]
+	Se $p > p_c$ temos comportamento de campo médio,
+	\[
+		\Theta_p(n) \geq p - p_c.
+	\]
+\end{theorem}
+
+A prova aqui será um pouco mais pesada, mas muito similar a prova
+vista antes. No intuito de usar
+OSSS, seja $f_n$ a função evento indicadora do evento que $0
+\leftrightarrow \partial B_n$.
+Para $k \leq n$, definimos o algoritmo $A_k$, sendo a exploração das
+componentes conexas dos pontos de $\partial B_k$.
+Note que para as arestas $e$ que tocam em $\partial B_k$,
+$\delta_{e}^{A_k} = 1$. Por OSSS, para cada $k$,
+\[
+	\Var(f_n) \leq p(1-p)\sum_{e \in B_n} \text{Inf}_e(f) \delta_e^{A_k}.
+\]
+Portanto,
+\begin{align*}
+	n\Var(f_n) &\leq p(1-p)\sum_{e \in B_n} \text{Inf}_e(f_n) \sum_{k =
+	1}^n \delta_e^{A_k}\\
+	&\leq p(1-p)\sum_{e \in B_n} \text{Inf}_e(f_n) \sum_{k = 1}^n \Pr_p(
+	e \leftrightarrow \partial B_{e, d(e,\partial B_k)})\\
+	&\leq p(1-p)\sum_{e \in B_n} \text{Inf}_e(f_n) 2 \sum_{k = 1}
+	\Pr_p(0 \leftrightarrow \partial B_k).
+\end{align*}
+Denotando $\sum_{k = 1}^n \Pr_p(0 \leftrightarrow \partial B_k)$ por
+$\sigma_n$ e usando Margulis-Russo [\ref{trm:russo}]
+temos que
+\[
+	\frac{d \Ex_p(f_n)}{dp} \geq \frac{n \Var(f_n)}{2p(1-p) \sigma_n}.
+\]
+Ou seja,
+\[
+	\Theta_n'(p) \geq \frac{n \Theta_n(p)(1 - \Theta_n(p))}{2p(1-p) \sigma_n}.
+\]
+\begin{remark}
+	Num esquema semelhante, note que se valesse a equação $g' \geq ng$, então
+	\[
+		\log(g)' = \frac{g'}{g} \geq n
+	\]
+	e portanto, para $\alpha < \beta$, $g(\alpha) \leq \exp(-n(\beta -
+	\alpha))g(\beta)$.
+	A equação que obtemos é parecida, mas ela tem esses termos
+	esquisitos que atrapalham.
+\end{remark}
+
+Vamos ao lema que vai determinar completamente nosso problema, ele é
+surrealmente mágico. A prova
+é um wet-dream de um analista.
+
+\begin{lemma}
+	Seja $f_n : [0,1] \to [0,1]$ uma familia decrescente $f_{n+1} \leq
+	f_n$ de funções crescentes
+	satisfazendo
+	\[
+		f_n'(p) \geq \frac{n}{\sigma_n} f_n(p)
+	\]
+	onde $\sigma_n = \sum_{k \leq n} f_k(p)$. Então, existe $p_\star \in
+	[0,1]$ tal que
+	\begin{enumerate}
+		\item $\forall p < p_\star$, temos $f_n(p) \leq \exp(-c(p)n)$.
+		\item $\forall p > p_\star$, temos $f_n(p) \geq p - p_\star$.
+	\end{enumerate}
+\end{lemma}
+\begin{remark}
+	Note que isso implica exatamente o teorema que queremos provar.
+\end{remark}
+
+Eis a magia. Definimos a constante que faz funcionar, seja
+\[
+	p_\star = \inf \{ p \in [0,1] : \limsup_n \frac{\log \sigma_n}{\log
+	n} \geq 1\}.
+\]
+Vamos provar o resultado para esse valor.
+
+\begin{proof}[Prova para o caso subcrítico]
+	Sempre tem um lado fácil e um difícil, nesse caso sharpness na subcrítico é
+	o mais tranquilo. Seja $p_0 < p_\star$, por definição $\limsup_n
+	\frac{\log \sigma_n}{\log n} < 1$.
+	Em particular, existe $\alpha < 1$ e $n_0$ tal que $n > n_0$ implica
+	$\log \sigma_n / \log n < \alpha$.
+	Ou seja, $\sigma_n < n^{\alpha}$ para $\alpha < 1$ e $n$ grande.
+	Portanto, para $n$ grande,
+	\[
+		f_n'(p) \geq n^{1-\alpha} f_n(p).
+	\]
+	Ou seja, $\log(f_n)' \geq n^{1-\alpha}$. Para $p_1 < p_0$, segue que
+	\[
+		\log(f_n(p_1)) \leq (p_1 - p_0)n^{1-\alpha} + \log(f_n(p_0))
+	\]
+	e portanto conseguimos um bound quase exponencial,
+	\[
+		f_n(p_1) \leq \exp((p_1 - p_0)n^{1 - \alpha})f_n(p_0).
+	\]
+	Agora note que, para $p_2 \leq p_1$, pelo o que acabamos de ver,
+	$\sum_{n} f_n(p_2)$ converge.
+	Portanto para esses valores, $\sigma_n$ é cotado por uma constante $M$.
+	Segue pela observação anterior que para $p < p_2$, $f_n(p) \leq C\exp(c(p)n)$.
+	Como para $p < p_\star$ sempre podemos escolher $p < p_2 < p_1 <
+	p_\star$, o resultado
+	vale para todo $p$. Esse é um argumento muito bonitinho de bootstrap!
+\end{proof}
+
+Agora vamos ao difícil. Provar meio campo no supercrítico.
+(Tive que pescar, não lembrei de cabeça).
+\begin{proof}[Prova para o caso supercrítico]
+	Tome $p > p_\star$. A ideia é que aquela definição esquisita ali é a mais fraca
+	que permite a gente integrar e ter um resultado sobre $f_n$. Note
+	que $f_n(p)$ decresce
+	para $f(p) = \lim_n f_n(p)$. Segue que podemos tomar o limite de
+	Césaro da função e
+	concluímos que
+	\[
+		\lim_{n} \frac{1}{n}\sum_{i = 1}^n f_i(p) = f(p).
+	\]
+	Mas as vezes temos algumas regularizações mais fracas que também
+	funcionam, como
+	por exemplo, segue também que
+	\[
+		\lim_n \frac{1}{\log n} \sum_{k = 1}^n \frac{f_k(p)}{k} = f(p).
+	\]
+	A ideia é fazer soma de Abel. Tem a fórmula bonitinha, mas adorei
+	uma forma nova
+	que descobri no livro do Tao com integrais.
+	Note que
+	\begin{align*}
+		T_n = \frac{1}{\log n} \sum_{k = 1}^n \frac{f_k(p)}{k}
+		&= \frac{1}{\log n} \sum_{k \leq n} f_k(p)\int_{1}^{\infty} \id[x
+		\geq k]\frac{dx}{x^2}\\
+		&= \frac{1}{\log n} \int_{1}^\infty \frac{1}{x}\bigg(\sum_{k =
+		1}^{\min(x, n)} f_k(p)\bigg) \frac{dx}{x}
+	\end{align*}
+	Agora tome $n_0$ tão grande tal que $\frac{1}{n_0} \sum_{k \leq n_0}
+	f_k(p) = (1 + \eps)f(p)$.
+	Supondo $n$ gigante na expressão de cima e separando o $n_0$ temos que
+	\[
+		\frac{1}{\log n}\bigg(\int_{1}^{n_0} \sum_{k =
+			1}^{\min(n_0)}\frac{f_k(p)}{k} \frac{dx}{x^2}
+		+ \int_{n_0}^{n} \frac{1}{x} (1 \pm \eps)f(p) dx \bigg)
+	\]
+	Isso é precisamente, tomando o limite em $n$,
+	\[
+		(1 \pm \eps)f(p) - \frac{C(n_0) + \log(n_0) (1 \pm \eps)f(p)}{\log
+		n} \to (1 \pm \eps)f(p)
+	\]
+	Tomando $\eps$ arbitráriamente pequeno temos o resultado.
+
+	Tá, agora vem a parte doida. Pela hipótese,
+	\[
+		T_n' = \frac{1}{\log n} \sum_{k \leq n} \frac{f_k'(p)}{k} \geq
+		\frac{1}{\log n} \sum_{k \leq n} \frac{f_k(n)}{\sigma_k}.
+	\]
+	Lembrando que $\sigma_n = \sum_{k \leq n} f_k(p)$ segue que
+	\[
+		T_n'\geq \frac{1}{\log n} \sum_{k \leq n} \frac{f_k(p)}{\sigma_k}
+		\geq \frac{1}{\log n} \int_{\sigma_1}^{\sigma_n - 1} \frac{dt}{t} =
+		\frac{\log \sigma_n - O(1)}{\log n}.
+	\]
+	Agora fixe $p > p_0 > p_\star$. Integrando os dois lados, tomando
+	limsup e usando convergência
+	dominada temos
+	\[
+		f(p) - f(p_0) = \limsup_n T_n(p) - T_n(p_0) \geq \int_{p_0}^p
+		\limsup \frac{\log \sigma_n - \sigma_1}{\log n} dp = p - p_0.
+	\]
+	Concluindo o resultado.
+\end{proof}
