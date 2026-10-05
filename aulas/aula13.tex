@@ -1,1 +1,159 @@
 \section{Aula 13}
+
+Nessa aula vimos renormalização de um passo. A ideia é a seguinte,
+suponha que dado $R = [10n]\times[n]$ temos
+$\Pr(H(R)) > 1 - \eps$. Então a gente fechar um pouco os olhos
+e considerar uma percolação em que os sítios são pontos em $n \times \Z^2$
+e dizemos que um vertice $v$ está aberto se uma cerca perto de $v$
+com retângulos tipo $R$
+está aberta. Por exemplo, a cerca do $0$ poderia ser os restângulos
+que formam $B_{10n} - B_{9n}$.
+Agora, um sítio está aberto nesse modelo com uma probabilidade $1 -
+\eps'$ e queríamos dizer
+que isso já é maior que os bounds fáceis de percolação de $\Z^2$,
+então percolamos.
+
+Esse argumento está quase certo, mas tem um problema enorme, essa
+percolação não é independente.
+Para isso vamos construir uma teoria sobre percolação dependente.
+Precisamos de algumas
+definições.
+
+\begin{definition}
+	Uma percolação $(Y_x)_{x \in E}$ é dita $k$-independente se para quaisquer dois
+	conjuntos de arestas $A$ e $B$ com $d(A,B) > k$ temos $Y_A \perp Y_B$.
+\end{definition}
+
+\begin{definition}
+	Dadas percolações $Y$ e $X$, dizemos que $Y$ domina estocásticamente $X$
+	ou $Y \succ X$ se para toda $f$ crescente
+	\[
+		\Ex_Y[f] \geq \Ex_X[f].
+	\]
+\end{definition}
+
+\begin{obs}
+	Essa última definição é equivalente a algo bem mais forte. Que
+	existe um coupling $Q$ de $Y$ e $X$ tal que $X_e = 1$ implica em $Y_e = 1$.
+	Este não é um teorema fácil de mostrar.
+\end{obs}
+
+O principal teorema da aula nos diz que se temos um lowerbound para
+qualquer aresta estar aberta e supondo que nossa percolação é
+$k$-independente para algum
+$k$ finito, então ela domina estocásticamente algum produto de Bernoullis.
+
+\begin{theorem}[Liggott-Schonmann-Stacy]
+	Para todo $d,k \geq 1$,  existe $\phi : [0,1] \to [0,1]$ com
+	$\lim_{p \to 1} \phi(p) = 1$  tal que se $Y$ é uma
+	percolação k-independente e $\Pr(Y_x = 1) \geq p$ para todo $x$
+	então $Y \succ \text{Ber}(\phi(p))^{\otimes \Z^d}$.
+\end{theorem}
+
+\begin{remark}
+	Esse teorema só fala algo para $p$ bem perto de $1$. Considere o exemplo em que
+	$x \in \Z$, $U_x \sim U[0,1]$ e $Y_x = \id [U_x < U_{x+1}]$. Então é claro
+	que $\Pr(Y_x) \geq 1/2$ para todo $x$ e $Y$ é $1$-independente. No entanto,
+	$\Pr(X_0 = X_1 = \dots = X_n = 1) = \frac{1}{n!} < p^n$ para todo
+	$p$ se $n$ é suficientemente grande. Em particular, $\phi(1/2)$ dada
+	pelo teorema deve ser $0$.
+\end{remark}
+
+A prova não é nem um pouco intuitiva. Vamos mostrar um lema
+específico que vai implicar o teorema.
+\begin{lemma}
+	Seja $Y$ uma percolação em $\Z^d$ com $\Pr(Y_e = 1) \geq p$.
+	Suponha que $r,s \in [0,1]$ são tais que
+	\begin{enumerate}
+		\item $(1-r)(1-s)^{|B(0,k)|} \geq 1-p$
+		\item $(1-r)r^{|B(0,k)|} \geq 1-p$
+	\end{enumerate}
+	então $YZ^{s} \succ Z^{rs}$ com $Z^{q}$ é uma percolação Bernoulli com
+	parâmetro $q$.
+\end{lemma}
+
+\begin{remark}
+	Para concluir o teorema, note que trivialmente $Y \succ YZ^s \succ
+	Z^{rs}$. Além
+	do mais, $\phi(p)$ será o maior valor de $rs$ que satisfaz as desigualdades,
+	é um pouco chato ver isso, mas é possível fazer a definição
+	de forma que ambos vão para $1$ quando $p \to 1$.
+\end{remark}
+
+\begin{proof}[Prova do Lema]
+	Tá isso aqui é uma esquisitisse e estou seguindo
+	\href{https://sci-hub.box/10.1214/aop/1024404279}{o paper original}.
+	A ideia é fazer indução e separar no que a gente sabe.
+	Dá para checar que pela definição, olhando para só uma aresta $e$, temos que
+	\[
+		\Pr((YZ^s)_e = 1) \geq ps \geq rs
+	\]
+	então temos o caso base. Seja $J$ um conjunto finito de arestas de
+	tamanho $n$ e supomos
+	que provamos o resultado $YZ^s_I \succ Z^{rs}_I$ para $|I| < |J|$. Seja
+	\[
+		J = \{e_1, e_2, \dots, e_{j}\} \quad \& \quad J' = J \setminus \{e_j\}
+	\]
+	basta mostrar que dado $\omega \in {0,1}^{|J'|}$
+	\[
+		\Pr(Y_{e_j} = 1 | (YZ^{s})_{J'} = \omega) \geq r.
+	\]
+	Se esse for o caso, conseguimos construir um coupling com as
+	probabilidades condicionais.
+	A ideia aqui é usar o $Z^s$ para esquecermos o valor que $Y$ pode ter tomado.
+	Dividimos as arestas de $J'$ em três conjuntos disjuntos,
+	\[
+		J' = A_0 \cup A_1 \cup M
+	\]
+	onde $M = \{e_k : d(e_k, e_j) > k\}$ são as arestas independentes.
+	$A_0 = B(e_j, k) \cap \{e_k : \omega_k = 0\}$
+	são as arestas próximas iguais a $0$ e $A_1$ é o resto, i.e as
+	arestas próximas iguais a $1$.
+	Pelas condições em $Y$, temos que
+	\[
+		\Pr(Y_{e_j} = 1 | (YZ^s)_{J'} = \omega) = \Pr(Y_{e_j} = 1 |
+			(YZ^s)_{A_0} = \bm{0} \; \land \; (YZ^s)_{A_1} = \bm{1} \; \land
+		(YZ^s)_M = \omega_{M}).
+	\]
+	Pela independência do $Z^s$, isso é o mesmo que
+	\[
+		\Pr(Y_{e_j} = 1 | (YZ^s)_{A_0} = \bm{0} \; \land \; (Y)_{A_1} =
+		\bm{1} \; \land (YZ^s)_M = \omega_{M}).
+	\]
+	Vamos trabalhar na verdade com o evento oposto,
+	$\Pr(Y_{e_j} = 0 | (YZ^s)_{A_0} = \bm{0}, Y_{A_1} = \bm{1}, (YZ^s)_M
+	= \omega_M)$ para
+	obter nossos bounds. Abrindo a probabilidade condicional, temos
+	\[
+		\frac{\Pr(Y_{e_j} = 0 \; \cap\; (YZ^s)_{A_0} = \bm{0} \;\cap\;
+		Y_{A_1} = \bm{1} \;\cap\; (YZ^s)_M = \omega_M)}
+		{\Pr((YZ^s)_{A_0} = \bm{0} \;\cap\; Y_{A_1} = \bm{1} \;\cap\;
+		(YZ^s)_M = \omega_M)}
+	\]
+	Crescendo o evento de cima e diminuindo o de baixo (note
+	que vamos esquecer os valores de $Y_{A_1 \cup A_0}$),
+	achamos que isso é menor que
+	\[
+		\frac{\Pr(Y_{e_j} = 0 \;\cap \; (YZ^s)_M = \omega_M)}
+		{\Pr(Z^s_{A_0} = \bm{0} \cap Y_{A_1} = \bm{1} \;\cap\; (YZ^s)_M = \omega_M)}
+		= \frac{\Pr(Y_{e_j} = 0 | (YZ^s)_M = \omega_M)}
+		{\Pr(Z^s_{A_0} = \bm{0} \; \cap \; Y_{A_1} = \bm{1} | (YZ^s)_{M} = \omega_M)}
+	\]
+	Por hipótese e independência, essa última expressão é igual a
+	\[
+		\frac{1-p}{(1-s)^{|A_0|} \Pr(Y_{A_1}) = \bm{1} | (YZ^s)_{M} = \omega_M}.
+	\]
+	E é possível fácilmente cotar essa última igualdade por indução por baixo por
+	$r^{|A_1|}$. Portanto, temos que
+	\[
+		\Pr(Y_{e_j} = 0 | (YZ^s)_{J'} = \omega) \leq
+		\frac{1-p}{(1-s)^{|A_0|}r^{|A_1|}}.
+	\]
+	Por fim, como $(1-r)/(1-p) \geq 1/r^{|B(0,k)|}$ e $(1-r)/(1-p) \geq
+	1/(1-s)^{|B(0,k)|}$,
+	pela desigualdade geométrica, segue que
+	\[
+		\frac{1-p}{(1-s)^{|A_0|}r^{|A_1|}} \leq 1-r
+	\]
+	o que completa a demonstração.
+\end{proof}
