@@ -1,0 +1,77 @@
+\section{Aula 14}
+Essa aula não será possível de repassar para $\LaTeX$
+sem um sacrifício considerável - talvez humano. Usamos
+o teorema da aula passada [\ref{trm:lss}]
+para provar resultados em $\Z^2$ orientado.
+
+Definimos um modelo $\vec{\Z}^2 = (\Z^2, \cE)$ onde
+$\cE = \{(x, x + e_i) : x \in \Z^2, 1 \leq i \leq 2\}$. Note
+que as arestas desse grafo são orientadas, só podemos andar
+para cima e para direita. Uma sugestão do Augusto é olhar para
+esse modelo rotacionado em $45^\circ$, é um pouco mais natural.
+Estamos interessados no evento $\{0 \to \infty\}$ em que existe um
+caminho infinito direcionado saindo do $0$.  Definimos
+como sempre
+\[
+	\vec{p}_c = \inf \{p \in [0,1] : \Pr_p(0 \to \infty) > 0\}.
+\]
+
+Relatamos algumas coisinhas simples, se $p$ for pequeno o suficente então
+por contagem de caminhos $\Pr_p(0 \to \partial B_n) \leq \exp(-c(p)n)$.
+Da mesma forma, se $p$ for grande o suficiente, podemos olhar para o dual,
+fazer uma continha um pouco mais envolvida e mostrar que
+$\Pr_p(0 \not \to \infty) \leq \exp(-c(p)n)$. Essas foram só bounds
+pertubativos do modelo. Depois usamos LSS duas vezes para conseguir
+condições finitas de percolação.
+
+Olhando para o modelo rotacionado agora. Dado um retângulo em pé $R$ de
+largura $w$ e altura $h$, definimos os eventos $V(R)$ em
+que cruzamos verticalmente (de baixo para cima) o rtângulo $R$
+e o evento $H(R)$ em que cruzamos horizontalmente. Aqui cruzar requer
+a hipótese extra que o caminho aberto seja direcionado. Então, por exemplo,
+um cruzamento horizontal sempre termina acima de onde começou.
+
+\begin{lemma}
+	Existe $\eps > 0$ tal que para todo $p$, se exitem $w,h$ tal que
+	\[
+		\Pr_p(V(R_{w,3h})) > 1 - \eps \quad \& \quad \Pr_p(H(R_{3w,h})) > 1 - \eps
+	\]
+	então $p > \vec{p}_c$.
+\end{lemma}
+
+\begin{remark}
+	Se cruzar na direção difícil acontece com probabilidade alta, então percolamos.
+\end{remark}
+
+\begin{proof}
+	A ideia é considerar um modelo normalizado fazendo $L$'s
+	de cabeça para baixo com esses retângulos,
+	é fácil ver que o modelo é algo como $3$-independente. Usando LSS [\ref{trm:lss}] e pedindo para
+	que $\phi(1-\eps)$ seja grande o suficiente, percolamos pelo teorema pertubativo
+	e portanto percolamos no modelo original. Além do mais, conseguimos
+	de graça decaimento exponencial.
+\end{proof}
+
+Da mesma forma, olhando para o dual, conseguimos um outro lema de condição finita.
+\begin{lemma}
+	Existe $\eps > 0$ tal que para todo $p$, se existem $w,h$ tal que
+	\[
+		\Pr_p(V(R_{3w,h})) < \eps \quad \& \quad \Pr_p(H(R_{w,3h})) < \eps
+	\]
+	então $p < \vec{p}_c$.
+\end{lemma}
+\begin{remark}
+	Se cruzar na direção fácil é suficientemente difícil, então não percolamos.
+\end{remark}
+\begin{proof}
+	A ideia aqui é fazer quase que a mesma coisa só que um grafo dual esquisito.
+	Construímos uma renormalização onde o sítios são cobertos por $\Pi$ (montado por retângulos) no dual.
+	Temos $k$-independência também e usando LSS com o resultado pertubativo, provamos
+	esse lemma.
+\end{proof}
+
+\begin{obs}
+	As provas foram bem geométricas, precisaria de muito Tikz, paciência e parcimonia. Mas deu
+	para sentir um gostinho do poder do LSS.
+\end{obs}
+

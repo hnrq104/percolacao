@@ -34,12 +34,12 @@ estar conectada ao infinito. Para ser mais exato, definimos o evento
 	v_2, \dots) \subset G_p\}
 \]
 onde $\sigma$ aqui é um caminho infinito que não se intersecta e $v_0
-= 0$. Temos então
+	= 0$. Temos então
 \begin{lemma}
 	\[
 		\Pr(G_p \text{ tem uma comp. con. infinita}) =
 		\begin{cases}
-			1 & \text{se } \Pr_p(\vec{0} \leftrightarrow \infty) > 0\\
+			1 & \text{se } \Pr_p(\vec{0} \leftrightarrow \infty) > 0 \\
 			0 & \text{se } \Pr_p(\vec{0} \leftrightarrow \infty) = 0
 		\end{cases}
 	\]
@@ -82,14 +82,17 @@ Provamos outro lema esperto também.
 \end{proof}
 
 Por fim o Augusto enunciou um teoremão bem bonito. Para reduzir a notação,
-seja $\Theta_d(p) = \Pr_p(\vec{0} \leftrightarrow \infty)$ em $\Z^d$.
+seja
+\[
+	\Theta_d(p) = \Pr_p(\vec{0} \leftrightarrow \infty) \text{ em } \Z^d.
+\]
 Temos então
 \begin{theorem}
 	\label{trm:bounds_for_pc}
 	Se $p < \frac{1}{2d - 1}$, então
-	\[\Theta(p) = 0.\]
+	\[\Theta_d(p) = 0.\]
 	Por outro lado, se $p > 2/3$, então
-	\[\Theta(p) > 0.\]
+	\[\Theta_d(p) > 0.\]
 \end{theorem}
 Ele só provou a parte fácil, que é a primeira afirmação.
 \begin{proof}
@@ -100,7 +103,7 @@ Ele só provou a parte fácil, que é a primeira afirmação.
 	cada um deles acontece com probabilidade $p^n$. Portanto,
 	\[
 		\Pr_p(\exists
-			\sigma_k = (\vec{0}, v_1, \dots, v_k) \subset G_p, v_k \in \partial
+		\sigma_k = (\vec{0}, v_1, \dots, v_k) \subset G_p, v_k \in \partial
 		B_n) \leq (2d)(2d-1)^{n-1}p^n \to 0
 	\]
 	se $p < \frac{1}{2d - 1}$.

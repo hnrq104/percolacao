@@ -9,7 +9,7 @@ com retângulos tipo $R$
 está aberta. Por exemplo, a cerca do $0$ poderia ser os restângulos
 que formam $B_{10n} - B_{9n}$.
 Agora, um sítio está aberto nesse modelo com uma probabilidade $1 -
-\eps'$ e queríamos dizer
+	\eps'$ e queríamos dizer
 que isso já é maior que os bounds fáceis de percolação de $\Z^2$,
 então percolamos.
 
@@ -44,6 +44,7 @@ $k$-independente para algum
 $k$ finito, então ela domina estocásticamente algum produto de Bernoullis.
 
 \begin{theorem}[Liggott-Schonmann-Stacy]
+	\label{trm:lss}
 	Para todo $d,k \geq 1$,  existe $\phi : [0,1] \to [0,1]$ com
 	$\lim_{p \to 1} \phi(p) = 1$  tal que se $Y$ é uma
 	percolação k-independente e $\Pr(Y_x = 1) \geq p$ para todo $x$
@@ -68,13 +69,13 @@ específico que vai implicar o teorema.
 		\item $(1-r)(1-s)^{|B(0,k)|} \geq 1-p$
 		\item $(1-r)r^{|B(0,k)|} \geq 1-p$
 	\end{enumerate}
-	então $YZ^{s} \succ Z^{rs}$ com $Z^{q}$ é uma percolação Bernoulli com
+	então $YZ^{s} \succ Z^{rs}$ onde $Z^{q}$ é uma percolação Bernoulli com
 	parâmetro $q$.
 \end{lemma}
 
 \begin{remark}
 	Para concluir o teorema, note que trivialmente $Y \succ YZ^s \succ
-	Z^{rs}$. Além
+		Z^{rs}$. Além
 	do mais, $\phi(p)$ será o maior valor de $rs$ que satisfaz as desigualdades,
 	é um pouco chato ver isso, mas é possível fazer a definição
 	de forma que ambos vão para $1$ quando $p \to 1$.
@@ -112,7 +113,7 @@ específico que vai implicar o teorema.
 	Pelas condições em $Y$, temos que
 	\[
 		\Pr(Y_{e_j} = 1 | (YZ^s)_{J'} = \omega) = \Pr(Y_{e_j} = 1 |
-			(YZ^s)_{A_0} = \bm{0} \; \land \; (YZ^s)_{A_1} = \bm{1} \; \land
+		(YZ^s)_{A_0} = \bm{0} \; \land \; (YZ^s)_{A_1} = \bm{1} \; \land
 		(YZ^s)_M = \omega_{M}).
 	\]
 	Pela independência do $Z^s$, isso é o mesmo que
@@ -122,13 +123,13 @@ específico que vai implicar o teorema.
 	\]
 	Vamos trabalhar na verdade com o evento oposto,
 	$\Pr(Y_{e_j} = 0 | (YZ^s)_{A_0} = \bm{0}, Y_{A_1} = \bm{1}, (YZ^s)_M
-	= \omega_M)$ para
+		= \omega_M)$ para
 	obter nossos bounds. Abrindo a probabilidade condicional, temos
 	\[
 		\frac{\Pr(Y_{e_j} = 0 \; \cap\; (YZ^s)_{A_0} = \bm{0} \;\cap\;
-		Y_{A_1} = \bm{1} \;\cap\; (YZ^s)_M = \omega_M)}
+			Y_{A_1} = \bm{1} \;\cap\; (YZ^s)_M = \omega_M)}
 		{\Pr((YZ^s)_{A_0} = \bm{0} \;\cap\; Y_{A_1} = \bm{1} \;\cap\;
-		(YZ^s)_M = \omega_M)}
+			(YZ^s)_M = \omega_M)}
 	\]
 	Crescendo o evento de cima e diminuindo o de baixo (note
 	que vamos esquecer os valores de $Y_{A_1 \cup A_0}$),
@@ -150,7 +151,7 @@ específico que vai implicar o teorema.
 		\frac{1-p}{(1-s)^{|A_0|}r^{|A_1|}}.
 	\]
 	Por fim, como $(1-r)/(1-p) \geq 1/r^{|B(0,k)|}$ e $(1-r)/(1-p) \geq
-	1/(1-s)^{|B(0,k)|}$,
+		1/(1-s)^{|B(0,k)|}$,
 	pela desigualdade geométrica, segue que
 	\[
 		\frac{1-p}{(1-s)^{|A_0|}r^{|A_1|}} \leq 1-r
